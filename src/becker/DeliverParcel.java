@@ -1,20 +1,22 @@
 package becker;
 
 import becker.robots.*;
+import java.util.*;
 
 public class DeliverParcel
 {
    public static void main(String[] args)
    {  
      // Set up the initial situation
+       Scanner flujo = new Scanner(System.in);
       City prague = new City();
-      Thing parcel = new Thing(prague, 1, 2);
       Robot karel = new Robot(prague, 1, 0, Direction.EAST,5);
-    
+      int j;
       // Direct the robot to the final situation
       karel.move();
       karel.move();
-      karel.pickThing();
+      //karel.pickThing();
+      System.out.println("HOLA");
       karel.move();
       karel.turnLeft();	// start turning right as three turn lefts
       karel.turnLeft();
@@ -22,6 +24,16 @@ public class DeliverParcel
       karel.move();
      // karel.putThing();
       karel.move();
-      System.out.println(karel.countThingsInBackpack());
+      j = flujo.nextInt();
+      if (j == 1){
+          karel.turnLeft();
+          karel.turnLeft();
+          karel.turnLeft();
+          karel.turnLeft();
+          karel.turnLeft();
+          karel.turnLeft();
+          karel.turnLeft();
+          karel.turnLeft();
+      }
    }
 }
