@@ -17,9 +17,9 @@ public class Car {
         this.traveled = traveled;
     }
 
-    public Car(CarModel model, int traveled) {
+    public Car(CarModel model) {
         this.model = model;
-        this.traveled = traveled;
+        this.traveled = 0;
     }
 
     public CarModel getModel() {

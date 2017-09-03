@@ -83,10 +83,11 @@ public class Factura {
         return mes_vence;
     }
 
-    public Factura(Producto producto, int cantidad, int dia_creado, Mes mes_creado, int dia_vence, Mes mes_vence) {
+    public Factura(Producto producto, int cantidad, double valor, int dia_creado, Mes mes_creado, int dia_vence, Mes mes_vence) {
         this.proovedor = producto.getProovedor();
         this.producto = producto;
         this.cantidad = cantidad;
+        this.valor = valor;
         this.dia_creado = dia_creado;
         this.mes_creado = mes_creado;
         this.dia_vence = dia_vence;

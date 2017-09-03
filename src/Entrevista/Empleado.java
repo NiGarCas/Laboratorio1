@@ -10,10 +10,14 @@ package Entrevista;
  * @author nicol
  */
 public class Empleado {
-    private String nombre;
+    private int numero;
     private int horas_normales;
     private int horas_extra;
     private int horas_festivos;
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
 
     public void setHoras_normales(int horas_normales) {
         this.horas_normales = horas_normales;
@@ -27,8 +31,8 @@ public class Empleado {
         this.horas_festivos = horas_festivos;
     }
 
-    public String getNombre() {
-        return nombre;
+    public int getNumero() {
+        return numero;
     }
 
     public int getHoras_normales() {
@@ -43,8 +47,8 @@ public class Empleado {
         return horas_festivos;
     }
 
-    public Empleado(String nombre) {
-        this.nombre = nombre;
+    public Empleado(int numero) {
+        this.numero = numero;
         this.horas_normales = 0;
         this.horas_extra = 0;
         this.horas_festivos = 0;

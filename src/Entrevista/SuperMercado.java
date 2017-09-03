@@ -180,12 +180,12 @@ public class SuperMercado {
     }
     
     public void hacerPedidoProducto(Producto producto, int cantidad, int dia_plazo, Mes mes_plazo){
-        Factura factura = new Factura(producto, cantidad, this.getDia(), this.getMes(), dia_plazo, mes_plazo);
+        Factura factura = new Factura(producto, cantidad, producto.getCosto() * cantidad, this.getDia(), this.getMes(), dia_plazo, mes_plazo);
         if(this.num_facturas < 1000){
                 this.facturas[this.num_facturas] = factura;
                 this.num_facturas++;
                 producto.setCantidad_actual(producto.getCantidad_actual() + cantidad);
-                System.out.println("Pedido realizado exitosamente. Pagar cuanto antes la factura");
+                System.out.println("Pedido realizado exitosamente. Recuerde pagar cuanto antes la factura");
                 System.out.println("Cantidad actual de " + producto.getNombre() + ": " + producto.getCantidad_actual());
             }else{
                 System.out.println("No es posible realizar pedido. Se ha exedido el limite de numero de facturas");
@@ -194,6 +194,7 @@ public class SuperMercado {
     }
     
     public void mostrarFacturasProovedor (String Proovedor){
+        boolean existe = false;
         for(int i = 0; i< this.num_facturas; i++){
             if (this.facturas[i].getProovedor().equals(Proovedor)){
                 System.out.println("FACTURA A PAGAR #" + (i+1));
@@ -201,14 +202,59 @@ public class SuperMercado {
                 System.out.println("Plazo maximo para pagar: " + this.facturas[i].getDia_vence()+ " / " + this.facturas[i].getMes_vence().getNombre());
                 System.out.println("Producto: " + this.facturas[i].getProducto().getNombre());
                 System.out.println("Cantidad: " + this.facturas[i].getCantidad());
-                System.out.println("Valor a pagar: " + this.facturas[i].getValor());
+                System.out.println("Valor a pagar: $" + this.facturas[i].getValor());
                 System.out.println(" ");
+                existe = true;
             }
-        }  
+        }
+        if (existe == false){
+            System.out.println("El nombre dado no corresponde a ningun proovedor del supermercado");
+        }
     }
     
     public void mostrarFacturasFechaPlazo (){
-
+        for(int i=0; i<(this.num_facturas - 1); i++){
+            int min = i;
+            for(int j=i+1;j < this.num_facturas;j++){
+                if(this.facturas[j].getMes_vence().getNumero() < this.facturas[min].getMes_vence().getNumero()){
+                    min = j;
+                }
+            }
+            if(i!= min){
+                Factura aux = this.facturas[i];
+                this.facturas[i]=this.facturas[min];
+                this.facturas[min] = aux;
+            }
+        }
+        int primero_mes = 0;
+        int z;
+        for (z = 0; z < this.num_facturas - 1; z++){
+            if ((this.facturas[z].getMes_vence().getNumero() == this.facturas[z+1].getMes_vence().getNumero())|| (z == this.num_facturas - 2)){
+                for(int i= primero_mes; i<(z - 1); i++){
+                    int min = i;
+                    for(int j = i+1;j < z;j++){
+                        if(this.facturas[j].getMes_vence().getNumero() < this.facturas[min].getMes_vence().getNumero()){
+                            min = j;
+                        }
+                    }
+                    if(i!= min){
+                        Factura aux = this.facturas[i];
+                        this.facturas[i]=this.facturas[min];
+                        this.facturas[min] = aux;
+                    }
+                }
+                primero_mes = z + 1;
+            }
+        }
+        for(int i = 0; i< this.num_facturas; i++){
+            System.out.println("FACTURA A PAGAR #" + (i+1));
+            System.out.println("Fecha de creacion: " + this.facturas[i].getDia_creado()+ " / " + this.facturas[i].getMes_creado().getNombre());
+            System.out.println("Plazo maximo para pagar: " + this.facturas[i].getDia_vence()+ " / " + this.facturas[i].getMes_vence().getNombre());
+            System.out.println("Producto: " + this.facturas[i].getProducto().getNombre());
+            System.out.println("Cantidad: " + this.facturas[i].getCantidad());
+            System.out.println("Valor a pagar: $" + this.facturas[i].getValor());
+            System.out.println(" ");  
+        }
     }
     
     public void registrarPagoFactura (int numero_factura){
@@ -228,11 +274,41 @@ public class SuperMercado {
     }
     
     public void mostrarProductosVentas (){
-
+        for(int i=0; i<(this.num_productos - 1); i++){
+            int max = i;
+            for(int j=i+1;j < this.num_productos;j++){
+                if(this.productos[j].getCantidad_vendida() > this.productos[max].getCantidad_vendida()){
+                    max = j;
+                }
+            }
+            if(i!= max){
+                Producto aux = this.productos[i];
+                this.productos[i]=this.productos[max];
+                this.productos[max] = aux;
+            }
+        }
+        for (int k = 0; k < this.num_productos; k++){
+            System.out.println(this.productos[k].getNombre() +": "+ this.productos[k].getCantidad_vendida() + " unidades vendidas");
+        }
     }
     
     public void mostrarProductosCantidadActual (){
-
+        for(int i=0; i<(this.num_productos - 1); i++){
+            int min = i;
+            for(int j=i+1;j < this.num_productos;j++){
+                if(this.productos[j].getCantidad_actual() < this.productos[min].getCantidad_actual()){
+                    min = j;
+                }
+            }
+            if(i!= min){
+                Producto aux = this.productos[i];
+                this.productos[i]=this.productos[min];
+                this.productos[min] = aux;
+            }
+        }
+        for (int k = 0; k < this.num_productos; k++){
+            System.out.println(this.productos[k].getNombre() +": "+ this.productos[k].getCantidad_actual() + " unidades disponibles para venta");
+        }
     }
     
     public void mostrarVentasDia (int dia, Mes mes){
@@ -274,8 +350,8 @@ public class SuperMercado {
         for(int i = 0; i< this.num_gastos; i++){
             if ((this.gastos[i].getDia() == dia)&&(this.gastos[i].getMes().getNumero() == mes.getNumero())){
                 System.out.println("GASTO #" + (i+1));
-                System.out.println("Producto: " + this.gastos[i].getAsunto());
-                System.out.println("Cantidad: " + this.gastos[i].getEmpleado().getNombre());
+                System.out.println("Asunto: " + this.gastos[i].getAsunto());
+                System.out.println("Empleado: " + this.gastos[i].getEmpleado().getNumero());
                 System.out.println("Valor: " + this.gastos[i].getValor());
                 System.out.println(" ");
                 existe = true;
@@ -300,120 +376,181 @@ public class SuperMercado {
         }
     }
     
-    public void cambiarPrecioProducto (Producto producto, double nuevo_precio){
-        System.out.println("Anterior precio de " + producto.getNombre() + " = $" + producto.getPrecio());
-        producto.setPrecio(nuevo_precio);
-        System.out.println("Nuevo precio de " + producto.getNombre() + " = $" + producto.getPrecio());
+    public void cambiarPrecioProducto (String nombre_producto, double nuevo_precio){
+        boolean existe = false;
+        for(int i = 0; i< this.num_productos; i++){
+            if (this.productos[i].getNombre().equals(nombre_producto)){
+                Producto producto = this.productos[i];
+                System.out.println("Cambio de precio realizado exitosamente");
+                System.out.println("Anterior precio de " + producto.getNombre() + " = $" + producto.getPrecio());
+                producto.setPrecio(nuevo_precio);
+                System.out.println("Nuevo precio de " + producto.getNombre() + " = $" + producto.getPrecio());
+                existe = true;
+                break;
+            }
+        }
+        if (existe == false){
+            System.out.println("El nombre dado no corresponde a ningun producto del supermercado");
+        }
     }
     
-    public void SalarioMensual (Empleado empleado, int horas_normales, int horas_extra, int horas_festivos){
+    public void salarioMensual (Empleado empleado, int horas_normales, int horas_extra, int horas_festivos){
+        double s_minimo = 737717;
+        double s_transporte = 83140;
+        double valor_hn = (horas_normales * s_minimo)/ 240;
+        double valor_he = ((horas_extra * s_minimo)/ 240) * 1.25;
+        double valor_hf = ((horas_festivos * s_minimo)/ 240) * 2;
+        double total = valor_hn + valor_he + valor_hf;
+        double ssyp_empleador = total * 0.302;
+        double ssyp_empleado = total * 0.08;
+        total = (total + s_transporte) + (ssyp_empleador - ssyp_empleado);
+        Gasto gasto = new Gasto ("Pago Salario", empleado, total, this.getDia(), this.getMes());
+        System.out.println("Cantidad a pagar: $" + gasto.getValor());
+        if(this.num_gastos < 1000){
+            this.gastos[this.num_gastos] = gasto;
+            this.num_gastos++;
+            System.out.println("Pago de salario registrado exitosamente");
+        }else{
+            System.out.println("No es posible pagar salario. Se ha excedido el limite de numero de gastos");
+        }
+    }
+    
+    public void liquidacion (Empleado empleado, int horas_normales, int horas_extra, int horas_festivos){
         double s_minimo = 737.717;
         double s_transporte = 83.140;
-        
+        double valor_hn = (horas_normales * s_minimo)/ 2880;
+        double valor_he = ((horas_extra * s_minimo)/ 2880) * 1.25;
+        double valor_hf = ((horas_festivos * s_minimo)/ 2880) * 2;
+        double cesantias = ((valor_hn + valor_he + valor_hf)/12) + s_transporte;
+        double intereses_cesantias = cesantias * 0.12;
+        double prima_servicios = cesantias;
+        double total = cesantias + intereses_cesantias + prima_servicios;
+        Gasto gasto = new Gasto ("Pago Liquidacion", empleado, total, this.getDia(), this.getMes());
+        System.out.println("Cantidad a pagar: $" + gasto.getValor());
+        if(this.num_gastos < 1000){
+            this.gastos[this.num_gastos] = gasto;
+            this.num_gastos++;
+            System.out.println("Pago de liquidacion registrado exitosamente");
+        }else{
+            System.out.println("No es posible pagar liquidacion. Se ha excedido el limite de numero de gastos");
+        }
     }
     
-    public void SalarioLiquidacion (Empleado empleado, int horas_normales, int horas_extra, int horas_festivos){
-        
-    }
-    
-    public void cambiarDeDia(){
-        switch (this.getMes().getNumero()){
+    public void cambiarDeDia(int numero_mes, int dia){
+        Mes enero = new Mes ("enero", 1, 31);
+        Mes febrero = new Mes ("febrero", 2, 28);
+        Mes marzo = new Mes ("marzo", 3, 31);
+        Mes abril = new Mes ("abril", 4, 30);
+        Mes mayo = new Mes ("mayo", 5, 31);
+        Mes junio = new Mes ("junio", 6, 30);
+        Mes julio = new Mes ("julio", 7, 31);
+        Mes agosto = new Mes ("agosto", 8, 31);
+        Mes septiembre = new Mes ("septiembre", 9, 30);
+        Mes octubre = new Mes ("octubre", 10, 31);
+        Mes noviembre = new Mes ("noviembre", 11, 30);
+        Mes diciembre = new Mes ("diciembre", 12, 31);
+        int nuevodia = 0;
+        Mes month =  new Mes ("provisional", 0, 0);
+        int w = numero_mes;
+        switch (w){
             case 1:
-                if (this.getDia() == 31){
-                    this.setDia(1);
-                    Mes febrero = new Mes ("febrero", 2, 28);
-                    this.setMes(febrero);
+                if (dia == 31){
+                    nuevodia = 1;
+                    month = febrero;
                 }else{
-                    this.setDia(this.getDia() + 1);
+                    nuevodia = dia + 1;
+                    month = enero;
                 }
             case 2:
-                if (this.getDia() == 28){
-                    this.setDia(1);
-                    Mes marzo = new Mes ("marzo", 3, 31);
-                    this.setMes(marzo);
+                if (dia == 28){
+                    nuevodia = 1;
+                    month = marzo;
                 }else{
-                    this.setDia(this.getDia() + 1);
+                    nuevodia = dia + 1;
+                    month = febrero;
                 }
             case 3:
-                if (this.getDia() == 31){
-                    this.setDia(1);
-                    Mes abril = new Mes ("abril", 4, 30);
-                    this.setMes(abril);
+                if (dia == 31){
+                    nuevodia = 1;
+                    month = abril;
                 }else{
-                    this.setDia(this.getDia() + 1);
+                    nuevodia = dia + 1;
+                    month = marzo;
                 }
             case 4:
-                if (this.getDia() == 30){
-                    this.setDia(1);
-                    Mes mayo = new Mes ("mayo", 5, 31);
-                    this.setMes(mayo);
+                if (dia == 30){
+                    nuevodia = 1;
+                    month = mayo;
                 }else{
-                    this.setDia(this.getDia() + 1);
+                    nuevodia = dia + 1;
+                    month = abril;
                 }
             case 5:
-                if (this.getDia() == 31){
-                    this.setDia(1);
-                    Mes junio = new Mes ("junio", 6, 30);
-                    this.setMes(junio);
+                if (dia == 31){
+                    nuevodia = 1;
+                    month = junio;
                 }else{
-                    this.setDia(this.getDia() + 1);
+                    nuevodia = dia + 1;
+                    month = mayo;
                 }
             case 6:
-                if (this.getDia() == 30){
-                    this.setDia(1);
-                    Mes julio = new Mes ("julio", 7, 31);
-                    this.setMes(julio);
+                if (dia == 30){
+                    nuevodia = 1;
+                    month = julio;
                 }else{
-                    this.setDia(this.getDia() + 1);
+                    nuevodia = dia + 1;
+                    month = junio;
                 }
             case 7:
-                if (this.getDia() == 31){
-                    this.setDia(1);
-                    Mes agosto = new Mes ("agosto", 8, 31);
-                    this.setMes(agosto);
+                if (dia == 31){
+                    nuevodia = 1;
+                    month = agosto;
                 }else{
-                    this.setDia(this.getDia() + 1);
+                    nuevodia = dia + 1;
+                    month = julio;
                 }
             case 8:
-                if (this.getDia() == 31){
-                    this.setDia(1);
-                    Mes septiembre = new Mes ("septiembre", 9, 30);
-                    this.setMes(septiembre);
+                if (dia == 31){
+                    nuevodia = 1;
+                    month = septiembre;
                 }else{
-                    this.setDia(this.getDia() + 1);
+                    nuevodia = dia + 1;
+                    month = agosto;
                 }
             case 9:
-                if (this.getDia() == 30){
-                    this.setDia(1);
-                    Mes octubre = new Mes ("octubre", 10, 31);
-                    this.setMes(octubre);
+                if (dia == 30){
+                    nuevodia = 1;
+                    month = octubre;
                 }else{
-                    this.setDia(this.getDia() + 1);
+                    nuevodia = dia + 1;
+                    month = septiembre;
                 }
             case 10:
-                if (this.getDia() == 31){
-                    this.setDia(1);
-                    Mes noviembre = new Mes ("noviembre", 11, 30);
-                    this.setMes(noviembre);
+                if (dia == 31){
+                    nuevodia = 1;
+                    month = noviembre;
                 }else{
-                    this.setDia(this.getDia() + 1);
+                    nuevodia = dia + 1;
+                    month = octubre;
                 }
             case 11:
-                if (this.getDia() == 30){
-                    this.setDia(1);
-                    Mes diciembre = new Mes ("diciembre", 12, 31);
-                    this.setMes(diciembre);
+                if (dia == 30){
+                    nuevodia = 1;
+                    month = diciembre;
                 }else{
-                    this.setDia(this.getDia() + 1);
+                    nuevodia = dia + 1;
+                    month = noviembre;
                 }
             case 12:
-                if (this.getDia() == 31){
-                    this.setDia(1);
-                    Mes enero = new Mes ("enero", 1, 31);
-                    this.setMes(enero);
+                if (dia == 31){
+                    nuevodia = 1;
+                    month = enero;
                 }else{
-                    this.setDia(this.getDia() + 1);
+                    nuevodia = dia + 1;
+                    month = diciembre;
                 }
         }
+        this.setDia(nuevodia);
+        this.setMes(month);
     }
 }
