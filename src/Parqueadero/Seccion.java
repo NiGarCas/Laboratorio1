@@ -66,8 +66,8 @@ public class Seccion {
         int vehiculo=0;
         for (int i = 0; i <this.getNumvehiculos(); i++) {
            
-           System.out.println(vehiculo = this.vehiculo[i].getPlaca());   
-              break;
+         vehiculo = this.vehiculo[i].getPlaca();  
+             
           
          }
         return vehiculo;

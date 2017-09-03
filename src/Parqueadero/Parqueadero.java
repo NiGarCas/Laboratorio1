@@ -73,8 +73,8 @@ public class Parqueadero {
  public boolean agregarSeccionVehiculo(int numeroseccion,int placa,City city,  int i, int i1){
        boolean resultado = false;
         for (int j = 0; j < this.numerodesecciones; j++) {
-            if(this.seccion[numeroseccion].getNumeroseccion()==numeroseccion){
-              resultado = this.seccion[i].agregarvehiculo(placa, this.ciudad, i, i1);
+            if(this.seccion[j].getNumeroseccion()==numeroseccion){
+              resultado = this.seccion[j].agregarvehiculo(placa, city, i, i1);
               break;
             }
         }
@@ -89,7 +89,7 @@ public class Parqueadero {
               for(int i=0;i<this.seccion[numerodeseccion].getNumvehiculos();i++){
                  
                  System.out.println("Vehiculo"+0+i);
-                this.seccion[numerodeseccion].informacionvehiculo();
+              System.out.println("Placa "+this.seccion[numerodeseccion].informacionvehiculo());  
               }
               
              return true;

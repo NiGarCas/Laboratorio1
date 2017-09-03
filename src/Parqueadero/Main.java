@@ -74,7 +74,7 @@ public class Main {
             System.out.println("3. Informacion seccion");
             opcion = in.nextInt();
             if(opcion == 1){
-                System.out.println("Ingrese el numero de seccion");
+                System.out.println("Ingrese el numero de seccion de 0 a 2");
                 int numero = in.nextInt();
 //                System.out.println("Ingrese el nombre del artista");
 //                String artista = in.next();
@@ -101,23 +101,21 @@ public class Main {
 //                float calidad = in.nextFloat();
                 boolean  resultado = p.agregarSeccionVehiculo(numseccion,placa,ny,5,7);
                 if(resultado == true){
-                    System.out.println("Se creo la cancion satisfactoriamente");
+                    System.out.println("Se creo el auto ");
                 }else{
-                    System.out.println("La Cancion no puede ser agregado al disco especificado");
+                    System.out.println("La Cancion no puede ser agregado aldisco especificado");
                 }
+           
+             }else if(opcion == 3){
+                 System.out.println("Ingrese el numero de la seccion");
+                 int numseccion= in.nextInt();
+                boolean resultado=p.informacionvehiculos(numseccion); 
+                 if(resultado=true){
+                     System.out.println("Lista de vehiculos exitentes en la seccion");
+                 }else{
+                     System.out.println("No existe un cancion en el disco especificado.");
+                 }
             }
-//            }else if(opcion == 3){
-//                 System.out.println("Ingrese el nombre del disco");
-//                 String nombreDisco= in.next();
-//                 System.out.println("Ingrese el nombre de la cancion");
-//                 String nombreCancion = in.next();
-//                 Cancion cancion = tienda.darInformacionCancion(nombreDisco, nombreCancion);
-//                 if(cancion != null){
-//                     System.out.println(cancion.getNombre() + " " + cancion.getPrecio());
-//                 }else{
-//                     System.out.println("No existe un cancion en el disco especificado.");
-//                 }
-//            }
             else {
                 System.out.println("Opcion invalida");
             }
