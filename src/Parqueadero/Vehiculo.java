@@ -13,26 +13,23 @@ import java.util.*;
  */
 public class Vehiculo extends Thing {
     private int placa;
+//    private int  horaactual;
+//    Calendar calendario = Calendar.getInstance();
+// int hora =calendario.get(Calendar.HOUR_OF_DAY);
+//int minutos = calendario.get(Calendar.MINUTE);
 
-    public Vehiculo(int placa, City city, int i, int i1, Direction drctn, boolean bln, Icon icon) {
-        super(city, i, i1, drctn, bln, icon);
-        this.placa = placa;
-    }
+
+
+
+    
+  
 
     public Vehiculo(int placa, City city, int i, int i1) {
         super(city, i, i1);
         this.placa = placa;
     }
 
-    public Vehiculo(int placa, City city, int i, int i1, Direction drctn) {
-        super(city, i, i1, drctn);
-        this.placa = placa;
-    }
-
-    public Vehiculo(int placa, Robot robot) {
-        super(robot);
-        this.placa = placa;
-    }
+   
 
 
 
