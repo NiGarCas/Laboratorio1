@@ -10,11 +10,13 @@ package Entrevista;
  * @author nicol
  */
 public class Mes {
+    private String nombre;
     private int numero;
     private int numero_dias;
     private int[] dias;
 
-    public Mes(int numero, int numero_dias) {
+    public Mes(String nombre,int numero, int numero_dias) {
+        this.nombre = nombre;
         this.numero = numero;
         this.numero_dias = numero_dias;
         this.dias = new int[numero_dias];
