@@ -7,7 +7,7 @@ package TraduccionDiagramaClases;
 
 /**
  *
- * @author El PcGamer
+ * @author Nicolas Garcia y Juan David Jaime
  */
 public class Address {
     private String house;

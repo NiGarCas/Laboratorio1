@@ -7,7 +7,7 @@ package Entrevista;
 
 /**
  *
- * @author nicol
+ * @author Nicolas Garcia y Juan David Jaime
  */
 public class Empleado {
     private int numero;

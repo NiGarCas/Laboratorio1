@@ -7,12 +7,12 @@ package TraduccionDiagramaClases;
 
 /**
  *
- * @author El PcGamer
+ * @author Nicolas Garcia y Juan David Jaime
  */
 public class CarModel {
     private Category category;
     private int price;
-    private String modelnumber;
+    private String modelNumber;
 
     public Category getCategory() {
         return category;
@@ -22,19 +22,14 @@ public class CarModel {
         return price;
     }
 
-    public String getModelnumber() {
-        return modelnumber;
+    public String getModelNumber() {
+        return modelNumber;
     }
 
-    public CarModel(Category category, int Price, String modelnumber) {
+    public CarModel(Category category, int price, String modelNumber) {
         this.category = category;
         this.price = price;
-        this.modelnumber = modelnumber;
+        this.modelNumber = modelNumber;
     }
-    public void agregarcategoria(String category){
-        Category categoria=new Category(category);
-       
-    }
-    
             
 }

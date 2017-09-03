@@ -8,7 +8,7 @@ import java.util.*;
 
 /**
  *
- * @author nicol
+ * @author Nicolas Garcia y Juan David Jaime
  */
 public class Main {
     public static void main (String [] args){

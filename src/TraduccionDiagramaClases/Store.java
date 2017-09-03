@@ -7,7 +7,7 @@ package TraduccionDiagramaClases;
 
 /**
  *
- * @author El PcGamer
+ * @author Nicolas Garcia y Juan David Jaime
  */
 public class Store {
     private Address address;
@@ -29,8 +29,11 @@ public class Store {
     }
     public void addCar(CarModel model){
         if (this.numcarros < 20){
-            Car car=new Car(model);
+            this.car[numcarros] = new Car(model);
             this.numcarros++;
+            System.out.println("Carro agregado exitosamente");
+        }else{
+            System.out.println("No se pudo agregar carro. Limite maximo de carros alcanzado");
         }
     }
 }

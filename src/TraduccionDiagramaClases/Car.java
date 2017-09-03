@@ -7,7 +7,7 @@ package TraduccionDiagramaClases;
 
 /**
  *
- * @author El PcGamer
+ * @author El Nicolas Garcia y Juan David Jaime
  */
 public class Car {
     private CarModel model;

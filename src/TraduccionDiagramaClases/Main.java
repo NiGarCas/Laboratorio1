@@ -8,7 +8,7 @@ import java.util.*;
 
 /**
  *
- * @author nicol
+ * @author Nicolas Garcia y Juan David Jaime
  */
 public class Main {
     public static void main (String [] args){
@@ -29,23 +29,26 @@ public class Main {
         do{
             System.out.println("MENU:");
             System.out.println(" ");
-            System.out.println("1. Registrar informacion.");
+            System.out.println("1. Registrar informacion de carros.");
             System.out.println("2. Mostrar lista de carros.");
             System.out.println(" ");
             opcion = lectura.nextInt();
             switch (opcion){
                 case 1:
-                    System.out.println("Opciones:");
-                    System.out.println(" ");
-                    System.out.println("1. Crear carro");
-                    System.out.println("2. Crear modelo");
-                    System.out.println("3. Crear categoria");
-                    System.out.println(" ");
+                    System.out.println("Ingrese numero de modelo del carro: ");
+                    String numero_modelo = lectura.next();
+                    System.out.println("Ingrese precio del carro($): ");
+                    int precio = lectura.nextInt();
+                    System.out.println("Ingrese categoría del carro: ");
+                    String categoria = lectura.next();
+                    Category cat = new Category (categoria);
+                    CarModel model = new CarModel (cat, precio, numero_modelo);
+                    store.addCar(model);
                     break;
                 case 2:
                     for (int i = 0; i < store.getNumcarros(); i++){
                         System.out.println("CARRO #" + (i+1));
-                        System.out.println("Modelo: " + store.getCar()[i].getModel());
+                        System.out.println("Modelo: " + store.getCar()[i].getModel().getModelNumber());
                         System.out.println("Categoría: " + store.getCar()[i].getModel().getCategory().getName());
                         System.out.println(" ");
                     }
