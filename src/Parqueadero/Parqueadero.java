@@ -7,27 +7,23 @@ package Parqueadero;
 
 import becker.robots.*;
 import java.util.*;
+
+import java.util.Scanner;
 /**
  *
  * @author El PcGamer
  */
 public class Parqueadero { 
-    private String nombre;
+  
     private City ciudad;
-    private Robot vehiculo;
-
-    public Parqueadero(String nombre) {
-        this.nombre = nombre;
+  
+    public Parqueadero() {
         
+        this.ciudad = new City();
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
+    
+   
 
     public City getCiudad() {
         return ciudad;
@@ -37,20 +33,13 @@ public class Parqueadero {
         this.ciudad = ciudad;
     }
 
-    public Robot getVehiculo() {
-        return vehiculo;
-    }
-
-    public void setVehiculo(Robot vehiculo) {
-        this.vehiculo = vehiculo;
-    }
+    public void ingresarvehiculo(int placa ){
+        
+      
+         
+         
     
-
-    
-       public void girarderecha(Robot robot){
-        this.vehiculo.turnLeft();
-         this.vehiculo.turnLeft();
-          this.vehiculo.turnLeft();
+    }
          
 }
        
@@ -61,4 +50,4 @@ public class Parqueadero {
  
     
     
-}
+
