@@ -15,6 +15,38 @@ public class Mes {
     private int numero_dias;
     private int[] dias;
 
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public void setNumero(int numero) {
+        this.numero = numero;
+    }
+
+    public void setNumero_dias(int numero_dias) {
+        this.numero_dias = numero_dias;
+    }
+
+    public void setDias(int[] dias) {
+        this.dias = dias;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+    
+    public int getNumero() {
+        return numero;
+    }
+
+    public int getNumero_dias() {
+        return numero_dias;
+    }
+
+    public int[] getDias() {
+        return dias;
+    }
+
     public Mes(String nombre,int numero, int numero_dias) {
         this.nombre = nombre;
         this.numero = numero;
@@ -24,10 +56,4 @@ public class Mes {
             this.dias[i] = i+1;
         }
     }
-
-    public int getNumero() {
-        return numero;
-    }
-
-    
 }
