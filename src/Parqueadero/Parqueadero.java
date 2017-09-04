@@ -82,6 +82,18 @@ public class Parqueadero {
      
      
  }
+ 
+ public int Determinanandoseccion(){
+    int num=0;
+    for(int j=0;j<this.getNumerodesecciones();j++){
+    Seccion[] seccion=this.getSeccion();
+//    int numerovehiculosseccion=seccion[j].getNumvehiculos();
+//    int numerovehiculosseccion1=seccion[j+1].getNumvehiculos();
+      if(seccion[j].getNumvehiculos()>seccion[j+1].getNumvehiculos()){
+                   }
+    }
+ return  num;
+ }
      public boolean informacionvehiculos(int numerodeseccion){
     
           if (this.seccion[numerodeseccion].getNumeroseccion()==numerodeseccion){ 
@@ -89,7 +101,8 @@ public class Parqueadero {
               for(int i=0;i<this.seccion[numerodeseccion].getNumvehiculos();i++){
                  
                  System.out.println("Vehiculo"+0+i);
-              System.out.println("Placa "+this.seccion[numerodeseccion].informacionvehiculo());  
+                    Vehiculo[] vehiculo=this.seccion[numerodeseccion].getVehiculo();
+                    System.out.println(  "Placa"+ vehiculo[i].getPlaca()   );
               }
               
              return true;
@@ -103,6 +116,7 @@ public class Parqueadero {
   
 }   
 
+     
 }
        
        

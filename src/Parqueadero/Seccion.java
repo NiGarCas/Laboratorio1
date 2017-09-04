@@ -62,15 +62,8 @@ public class Seccion {
 }
     
 }
-    public int informacionvehiculo(){
-        int vehiculo=0;
-        for (int i = 0; i <this.getNumvehiculos(); i++) {
-           
-         vehiculo = this.vehiculo[i].getPlaca();  
-             
-          
-         }
-        return vehiculo;
+    public void informacionvehiculo(){
+      
         
     }
     

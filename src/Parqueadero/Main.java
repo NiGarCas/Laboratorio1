@@ -14,10 +14,10 @@ import java.util.*;
  * @author nicol
  */
 public class Main {
-    public static void girarDerecha(Robot karel){
-     karel.turnLeft();
-     karel.turnLeft();
-     karel.turnLeft();
+    public static void girarDerecha(Robot robot){
+     robot.turnLeft();
+     robot.turnLeft();
+     robot.turnLeft();
    }
     public static Thing ingresarvehiculo(City ny,int pos,int pos2){
         Thing thing= new Thing(ny,pos,pos2);
@@ -35,35 +35,32 @@ public class Main {
 //
 //    {         Parqueadero ny = new Parqueadero("Santarita");
 //
-//           
-//      // Set up the initial situation
-//      //Creando la estructura del parqueadero
-//   
-//      
-//      for(int i=0;i<3;i++){
-//       Wall c1 = new Wall(ny, 0,i, Direction.NORTH);
-//       for(int j=0;j<5;j++){
-//       Wall c2=  new Wall(ny, j,i,Direction.WEST);
-//       Wall c3= new Wall(ny,j,i,Direction.EAST);
-//            }
-//      }
-//      for(int i=0;i<4;i++){
-//       Wall c3=  new Wall(ny,4 ,i+3,Direction.NORTH);
-//       Wall c4=  new Wall(ny,4 ,i+3,Direction.EAST);
-//   }
-//      for(int i=0;i<7;i++){
-//       Wall c5=  new Wall(ny,5 ,i,Direction.SOUTH);
-//      
-//   }
-//        Wall c1= new Wall(ny, 5,0, Direction.WEST);
-//      
-//       
-//  
-//     
-//       Robot karel = new Robot(ny, 5, 6, Direction.WEST);
-//
-//       Vehiculo vehiculo=new Vehiculo(1000,ny,5,7);
-       City ny=new City();
+           
+      // Set up the initial situation
+      //Creando la estructura del parqueadero
+   
+      City ny=new City();
+      for(int i=0;i<3;i++){
+       Wall c1 = new Wall(ny, 0,i, Direction.NORTH);
+       for(int j=0;j<5;j++){
+       Wall c2=  new Wall(ny, j,i,Direction.WEST);
+       Wall c3= new Wall(ny,j,i,Direction.EAST);
+            }
+      }
+      for(int i=0;i<4;i++){
+       Wall c3=  new Wall(ny,4 ,i+3,Direction.NORTH);
+       Wall c4=  new Wall(ny,4 ,i+3,Direction.EAST);
+   }
+      for(int i=0;i<7;i++){
+       Wall c5=  new Wall(ny,5 ,i,Direction.SOUTH);
+      
+   }
+        Wall c1= new Wall(ny, 5,0, Direction.WEST);
+               
+
+            
+       Robot roboco=new Roboco(ny, 5, 7, Direction.WEST);
+       girarDerecha(roboco);
          Parqueadero p= new Parqueadero("santa rata");
         Scanner in = new Scanner(System.in);
         int continuar = 1, opcion = 0;
@@ -86,8 +83,14 @@ public class Main {
                 }
             }else if(opcion == 2){
                 System.out.println("Numero de la seccion  a la cual desea agregar vehiculo");
-               
-               int numseccion= in.nextInt();
+                
+                 
+                 
+                 
+                 
+                 
+                 
+              int numseccion=  in.nextInt();
                 System.out.println("Ingrese los datos del vehiculo");
                 System.out.println("Placa");
                int placa= in.nextInt();
