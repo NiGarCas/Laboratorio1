@@ -85,15 +85,37 @@ public class Parqueadero {
  
  public int Determinanandoseccion(){
     int num=0;
-    for(int j=0;j<this.getNumerodesecciones();j++){
+    //for(int j=0;j<this.getNumerodesecciones()-1;j++){
     Seccion[] seccion=this.getSeccion();
 //    int numerovehiculosseccion=seccion[j].getNumvehiculos();
 //    int numerovehiculosseccion1=seccion[j+1].getNumvehiculos();
-      if(seccion[j].getNumvehiculos()>seccion[j+1].getNumvehiculos()){
-                   }
-    }
+if(seccion[0].getNumvehiculos()==seccion[1].getNumvehiculos()&&seccion[1].getNumvehiculos()==seccion[2].getNumvehiculos()){
+    num=0;
+}
+if(seccion[0].getNumvehiculos()<seccion[1].getNumvehiculos()){
+        num=0;
+}else if(seccion[0].getNumvehiculos()>seccion[1].getNumvehiculos()){
+            num=1;  
+            
+      }else if(seccion[1].getNumvehiculos()>seccion[2].getNumvehiculos()){
+       //num=seccion[2].getNumeroseccion();
+       num=2;  
+  
+           
+            }
+    //}
  return  num;
+
  }
+ public boolean agregarSeccionVehicularDeterminando(int placa,City city,  int i, int i1){
+     int numerodeseccion=this.Determinanandoseccion();
+    boolean resultado= this.agregarSeccionVehiculo(numerodeseccion, placa, city, i,i1);
+ return resultado;
+ }
+ 
+ 
+ 
+ 
      public boolean informacionvehiculos(int numerodeseccion){
     
           if (this.seccion[numerodeseccion].getNumeroseccion()==numerodeseccion){ 

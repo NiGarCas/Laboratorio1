@@ -82,7 +82,7 @@ public class Main {
                     System.out.println("Problemas en la creacion de la seccion");
                 }
             }else if(opcion == 2){
-                System.out.println("Numero de la seccion  a la cual desea agregar vehiculo");
+              //  System.out.println("Numero de la seccion  a la cual desea agregar vehiculo");
                 
                  
                  
@@ -90,7 +90,7 @@ public class Main {
                  
                  
                  
-              int numseccion=  in.nextInt();
+              //int numseccion=  in.nextInt();
                 System.out.println("Ingrese los datos del vehiculo");
                 System.out.println("Placa");
                int placa= in.nextInt();
@@ -102,7 +102,9 @@ public class Main {
 //                float tamanio = in.nextFloat();
 //                System.out.println("Calidad");
 //                float calidad = in.nextFloat();
-                boolean  resultado = p.agregarSeccionVehiculo(numseccion,placa,ny,5,7);
+              //  boolean  resultado = p.agregarSeccionVehiculo(numseccion,placa,ny,5,7);
+              boolean resultado=p.agregarSeccionVehicularDeterminando(placa, ny, 5, 7);
+              
                 if(resultado == true){
                     System.out.println("Se creo el auto ");
                 }else{
