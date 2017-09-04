@@ -9,7 +9,7 @@ import becker.robots.*;
 
 /**
  *
- * @author El PcGamer
+ * @author Nicolas Garcia y Juan David Jaime
  */
 public class Parqueadero { 
     

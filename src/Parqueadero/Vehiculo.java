@@ -9,7 +9,7 @@ import becker.robots.icons.Icon;
 import java.util.*;
 /**
  *
- * @author El PcGamer
+ * @author Nicolas Garcia y Juan David Jaime
  */
 public class Vehiculo extends Thing {
     private int placa;

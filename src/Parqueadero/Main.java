@@ -11,7 +11,7 @@ import java.util.*;
 
 /**
  *
- * @author nicol
+ * @author Nicolas Garcia y Juan David Jaime
  */
 public class Main {
     public static void girarDerecha(Robot robot){
@@ -61,26 +61,31 @@ public class Main {
             
        Robot roboco=new Roboco(ny, 5, 7, Direction.WEST);
        girarDerecha(roboco);
-         Parqueadero p= new Parqueadero("santa rata");
+         Parqueadero p= new Parqueadero("Parqueadero Santa Rita");
         Scanner in = new Scanner(System.in);
+        //iniciar 
+        for(int i=0;i<3;i++){
+        p.agregarSeccion(i);
+        }
         int continuar = 1, opcion = 0;
         do{
             System.out.println(p.getNombre());
-            System.out.println("1. Agregar seccion");
+            System.out.println("El parqueadero cuenta con las secciones 0, 1  y 2 ");
+            System.out.println("1. Sacar vehiculo");
             System.out.println("2. Agregar vehiculo");
             System.out.println("3. Informacion seccion");
             opcion = in.nextInt();
             if(opcion == 1){
-                System.out.println("Ingrese el numero de seccion de 0 a 2");
-                int numero = in.nextInt();
+                //System.out.println("Ingrese el numero de seccion de 0 a 2");
+                //int numero = in.nextInt();
 //                System.out.println("Ingrese el nombre del artista");
 //                String artista = in.next();
-                boolean resultado =p.agregarSeccion(numero) ;
-                if(resultado == true){
-                    System.out.println("Se ha creado satisfactoriamente la seccion");
-                }else{
-                    System.out.println("Problemas en la creacion de la seccion");
-                }
+               // boolean resultado =p.agregarSeccion(numero) ;
+              //  if(resultado == true){
+                //    System.out.println("Se ha creado satisfactoriamente la seccion");
+                //}else{
+                 //   System.out.println("Problemas en la creacion de la seccion");
+                //}
             }else if(opcion == 2){
               //  System.out.println("Numero de la seccion  a la cual desea agregar vehiculo");
                 
@@ -108,7 +113,7 @@ public class Main {
                 if(resultado == true){
                     System.out.println("Se creo el auto ");
                 }else{
-                    System.out.println("La Cancion no puede ser agregado aldisco especificado");
+                    System.out.println("El parqueadero esta completo");
                 }
            
              }else if(opcion == 3){
@@ -118,7 +123,7 @@ public class Main {
                  if(resultado=true){
                      System.out.println("Lista de vehiculos exitentes en la seccion");
                  }else{
-                     System.out.println("No existe un cancion en el disco especificado.");
+                     System.out.println("Problemas en la impresion de las placas de la seccion");
                  }
             }
             else {
