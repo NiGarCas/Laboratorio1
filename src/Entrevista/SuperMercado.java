@@ -450,105 +450,113 @@ public class SuperMercado {
         Mes noviembre = new Mes ("noviembre", 11, 30);
         Mes diciembre = new Mes ("diciembre", 12, 31);
         int nuevodia = 0;
-        Mes month =  new Mes ("provisional", 0, 0);
-        int w = numero_mes;
-        switch (w){
-            case 1:
-                if (dia == 31){
-                    nuevodia = 1;
-                    month = febrero;
+        Mes month =  this.getMes();
+        if (numero_mes == 1){
+            if (dia == 31){
+		nuevodia = 1;
+                month = febrero;
+            }else{
+        	nuevodia = dia + 1;
+            }
+        }else{
+            if(numero_mes == 2){
+		if (dia == 28){
+			nuevodia = 1;
+                    	month = marzo;
                 }else{
                     nuevodia = dia + 1;
-                    month = enero;
                 }
-            case 2:
-                if (dia == 28){
-                    nuevodia = 1;
-                    month = marzo;
-                }else{
-                    nuevodia = dia + 1;
-                    month = febrero;
+            }else{
+		if(numero_mes == 3){
+                    if (dia == 31){
+			nuevodia = 1;
+                    	month = abril;
+                    }else{
+                    	nuevodia = dia + 1;
+                    }
+		}else{
+                    if(numero_mes == 4){
+                        if (dia == 30){
+                            nuevodia = 1;
+                            month = mayo;
+                        }else{
+                            nuevodia = dia + 1;
+                        }
+                    }else{
+                        if(numero_mes == 5){
+                            if (dia == 31){
+                                nuevodia = 1;
+                    		month = junio;
+                            }else{
+                                nuevodia = dia + 1;
+                            }
+			}else{
+                            if(numero_mes == 6){
+				if (dia == 30){
+                                    nuevodia = 1;
+                                    month = julio;
+                		}else{
+                                    nuevodia = dia + 1;
+                		}
+                            }else{
+				if(numero_mes == 7){
+                                    if (dia == 31){
+					nuevodia = 1;
+                    			month = agosto;
+                                    }else{
+                    			nuevodia = dia + 1;
+                                    }
+				}else{
+                                    if(numero_mes == 8){
+					if (dia == 31){
+                                            nuevodia = 1;
+                                            month = septiembre;
+               				}else{
+                                            nuevodia = dia + 1;
+                			}
+                                    }else{
+					if(numero_mes == 9){
+                                            if (dia == 30){
+						nuevodia = 1;
+                    				month = octubre;
+                                            }else{
+                                                nuevodia = dia + 1;
+                                            }
+					}else{
+                                            if(numero_mes == 10){
+						if (dia == 31){
+                                                    nuevodia = 1;
+                                                    month = noviembre;
+                				}else{
+                                                    nuevodia = dia + 1;
+                				}
+                                            }else{
+						if(numero_mes == 11){
+                                                    if (dia == 30){
+							nuevodia = 1;
+                    					month = diciembre;
+                                                    }else{
+                    					nuevodia = dia + 1;
+                                                    }
+						}else{
+                                                    if(numero_mes == 12){
+							if (dia == 31){
+                                                            nuevodia = 1;
+                                                            month = enero;
+                					}else{
+                                                            nuevodia = dia + 1;
+                					}
+                                                    }
+						}
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
-            case 3:
-                if (dia == 31){
-                    nuevodia = 1;
-                    month = abril;
-                }else{
-                    nuevodia = dia + 1;
-                    month = marzo;
-                }
-            case 4:
-                if (dia == 30){
-                    nuevodia = 1;
-                    month = mayo;
-                }else{
-                    nuevodia = dia + 1;
-                    month = abril;
-                }
-            case 5:
-                if (dia == 31){
-                    nuevodia = 1;
-                    month = junio;
-                }else{
-                    nuevodia = dia + 1;
-                    month = mayo;
-                }
-            case 6:
-                if (dia == 30){
-                    nuevodia = 1;
-                    month = julio;
-                }else{
-                    nuevodia = dia + 1;
-                    month = junio;
-                }
-            case 7:
-                if (dia == 31){
-                    nuevodia = 1;
-                    month = agosto;
-                }else{
-                    nuevodia = dia + 1;
-                    month = julio;
-                }
-            case 8:
-                if (dia == 31){
-                    nuevodia = 1;
-                    month = septiembre;
-                }else{
-                    nuevodia = dia + 1;
-                    month = agosto;
-                }
-            case 9:
-                if (dia == 30){
-                    nuevodia = 1;
-                    month = octubre;
-                }else{
-                    nuevodia = dia + 1;
-                    month = septiembre;
-                }
-            case 10:
-                if (dia == 31){
-                    nuevodia = 1;
-                    month = noviembre;
-                }else{
-                    nuevodia = dia + 1;
-                    month = octubre;
-                }
-            case 11:
-                if (dia == 30){
-                    nuevodia = 1;
-                    month = diciembre;
-                }else{
-                    nuevodia = dia + 1;
-                    month = noviembre;
-                }
-            case 12:
-                if (dia == 31){
-                    nuevodia = 1;
-                    month = enero;
-                }else{
-                    nuevodia = dia + 1;
-                    month = diciembre;
-                }
+            }       
         }
         this.setDia(nuevodia);
         this.setMes(month);

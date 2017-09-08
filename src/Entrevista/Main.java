@@ -302,8 +302,6 @@ public class Main {
                     }
                     break;
                 case 5:
-                    System.out.println(x.getMes().getNumero());
-                    System.out.println(x.getDia());
                     x.cambiarDeDia(x.getMes().getNumero(), x.getDia());
                     break;
                 default:
