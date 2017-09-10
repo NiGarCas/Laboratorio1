@@ -14,7 +14,7 @@ public class Roboco extends Robot {
     public Roboco(City city, int i, int i1, Direction drctn) {
         super(city, i, i1, drctn);
     }
-     public  void girarDerecha(Roboco robot){
+     public  void girarDerechas(Roboco robot){
      robot.turnLeft();
      robot.turnLeft();
      robot.turnLeft();

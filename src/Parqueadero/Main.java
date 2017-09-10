@@ -7,7 +7,6 @@ package Parqueadero;
 import Parqueadero.*;
 import becker.robots.*;
 import java.util.*;
-import java.util.*;
 
 /**
  *
@@ -19,10 +18,236 @@ public class Main {
      robot.turnLeft();
      robot.turnLeft();
    }
-    public static Thing ingresarvehiculo(City ny,int pos,int pos2){
-        Thing thing= new Thing(ny,pos,pos2);
-    return thing;
+    public static void girarEspalda(Robot robot){
+     robot.turnLeft();
+     robot.turnLeft();
+        
+    }
+    public static void mover2(Robot robot){
+        robot.move();
+         robot.move();
+    }
+    public static void mover3(Robot robot){
+         robot.move(); 
+         robot.move();
+         robot.move();
+    }
+    public static void mover4(Robot robot){
+        for(int i=0;i<4;i++){
+             robot.move();
+        }
+    }
+    public static void mover5(Robot robot){
+                for(int i=0;i<5;i++){
+             robot.move();
+        }
+    }
+    public static void mover6(Robot robot){
+           for(int i=0;i<6;i++){
+             robot.move();
+    }
+    }
+    public static void mover7(Robot robot){
+           for(int i=0;i<7;i++){
+             robot.move();
+    }
+    }
+           public static void mover8(Robot robot){
+           for(int i=0;i<8;i++){
+             robot.move();
+              }
+           }
+    
+    
+    
+    
+    
+    
+    public static void ingresarVehiculo(Robot robot,int seccion){
+        if(seccion==0){
+            robot.pickThing();
+               for(int i=0;i<7;i++){
+                robot.move();
+               }
+            girarDerecha(robot);
+                for(int i=0;i<5;i++){
+                robot.move();
+                }
+            
+                robot.turnLeft();
+                
+                robot.turnLeft();
+            for(int i=0;i<5;i++){
+                  if(robot.canPickThing()){
+                  robot.move();
+                  }else if(robot.canPickThing()==false){
+                      if(robot.countThingsInBackpack()==1)
+                      robot.putThing();
+                      robot.move();
+
+                  }
+
+            }
+            robot.turnLeft();
+               for(int i=0;i<7;i++){
+                robot.move();
+               }
+            robot.turnLeft();
+             robot.turnLeft();
+            
+        }else if(seccion==1){
+              
+                robot.pickThing();
+               for(int i=0;i<6;i++){
+                robot.move();
+               }
+            girarDerecha(robot);
+                for(int i=0;i<5;i++){
+                robot.move();
+                }
+            
+                robot.turnLeft();
+                
+                robot.turnLeft();
+            for(int i=0;i<5;i++){
+                  if(robot.canPickThing()){
+                  robot.move();
+                  }else if(robot.canPickThing()==false){
+                      if(robot.countThingsInBackpack()==1)
+                      robot.putThing();
+                      robot.move();
+
+                  }
+
+            }
+            robot.turnLeft();
+               for(int i=0;i<6;i++){
+                robot.move();
+               }
+            robot.turnLeft();
+             robot.turnLeft();
+                
+        }else if(seccion==2){
+            robot.pickThing();
+               for(int i=0;i<5;i++){
+                robot.move();
+               }
+            girarDerecha(robot);
+                for(int i=0;i<5;i++){
+                robot.move();
+                }
+            
+                robot.turnLeft();
+                
+                robot.turnLeft();
+            for(int i=0;i<5;i++){
+                  if(robot.canPickThing()){
+                  robot.move();
+                  }else if(robot.canPickThing()==false){
+                      if(robot.countThingsInBackpack()==1)
+                      robot.putThing();
+                      robot.move();
+
+                  }
+
+            }
+            robot.turnLeft();
+               for(int i=0;i<5;i++){
+                robot.move();
+               }
+            robot.turnLeft();
+             robot.turnLeft();
+               
+            
+         }
+        
    }
+ public static void sacarVehiculo(int seccion,int posicion,Robot robot){
+     if(seccion==0){
+         if(posicion==4){
+               for(int i=0;i<7;i++){
+                robot.move();
+               }
+               girarDerecha(robot);
+               robot.move();
+               robot.pickThing();
+               girarEspalda(robot);
+               robot.move();
+               robot.turnLeft();
+               for(int i=0;i<8;i++){
+                robot.move();
+               }
+               robot.putThing();
+              girarEspalda(robot);
+               robot.move();
+         }else if(posicion==3){
+               mover7(robot);
+               girarDerecha(robot);
+               robot.move();
+               if(robot.canPickThing()){
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   robot.move();
+                   robot.turnLeft();
+                   mover3(robot);  
+                   robot.turnLeft();
+                   robot.move();
+                   robot.putThing();
+                   girarEspalda(robot);
+                   robot.move();
+                   girarDerecha(robot);
+                   for(int i=0; i<3;i++){
+                       robot.move();
+                   }
+                   girarDerecha(robot);
+                   mover2(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover2(robot);
+                    robot.turnLeft();
+                   for(int i=0;i<8;i++){
+                    robot.move();
+                   }
+                   robot.putThing();
+                    girarEspalda(robot);
+                   mover5(robot);
+                   girarDerecha(robot);
+                   robot.move();
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   robot.move();
+                   girarDerecha(robot);
+                   mover3(robot);
+                   girarDerecha(robot);
+                   mover2(robot);
+                   robot.putThing();
+                   girarEspalda(robot);
+                   mover2(robot);
+                   robot.turnLeft();
+                   mover7(robot);
+                   girarEspalda(robot);
+               
+               }else {
+               
+               robot.move();
+               robot.pickThing();
+               girarEspalda(robot);
+               mover2(robot);
+               robot.turnLeft();
+               mover8(robot);
+               robot.putThing();
+               girarEspalda(robot);
+               robot.move();
+               }
+               
+               
+         
+               
+                   
+             
+         }
+     }
+ }
     
     
   
@@ -59,8 +284,8 @@ public class Main {
                
 
             
-       Robot roboco=new Roboco(ny, 5, 7, Direction.WEST);
-       girarDerecha(roboco);
+       Robot roboco=new Robot(ny, 5, 7, Direction.WEST,0);
+      
          Parqueadero p= new Parqueadero("Parqueadero Santa Rita");
         Scanner in = new Scanner(System.in);
         //iniciar 
@@ -71,57 +296,53 @@ public class Main {
         do{
             System.out.println(p.getNombre());
             System.out.println("El parqueadero cuenta con las secciones 0, 1  y 2 ");
-            System.out.println("1. Sacar vehiculo");
-            System.out.println("2. Agregar vehiculo");
+            System.out.println("1. Agregar vehiculo");
+            System.out.println("2. Sacar vehiculo");
             System.out.println("3. Informacion seccion");
             opcion = in.nextInt();
             if(opcion == 1){
-                //System.out.println("Ingrese el numero de seccion de 0 a 2");
-                //int numero = in.nextInt();
-//                System.out.println("Ingrese el nombre del artista");
-//                String artista = in.next();
-               // boolean resultado =p.agregarSeccion(numero) ;
-              //  if(resultado == true){
-                //    System.out.println("Se ha creado satisfactoriamente la seccion");
-                //}else{
-                 //   System.out.println("Problemas en la creacion de la seccion");
-                //}
-            }else if(opcion == 2){
-              //  System.out.println("Numero de la seccion  a la cual desea agregar vehiculo");
-                
-                 
-                 
-                 
-                 
-                 
-                 
-              //int numseccion=  in.nextInt();
-                System.out.println("Ingrese los datos del vehiculo");
+                  System.out.println("Ingrese los datos del vehiculo");
                 System.out.println("Placa");
-               int placa= in.nextInt();
+               int placa= in.nextInt();               
                
-               
-//                System.out.println("Duracion");
-//                float duracion = in.nextFloat();
-//                System.out.println("Tamanio");
-//                float tamanio = in.nextFloat();
-//                System.out.println("Calidad");
-//                float calidad = in.nextFloat();
-              //  boolean  resultado = p.agregarSeccionVehiculo(numseccion,placa,ny,5,7);
+              int seccion=p.Determinanandoseccion();
               boolean resultado=p.agregarSeccionVehicularDeterminando(placa, ny, 5, 7);
+              ingresarVehiculo(roboco,seccion);
               
                 if(resultado == true){
                     System.out.println("Se creo el auto ");
                 }else{
                     System.out.println("El parqueadero esta completo");
                 }
+//               
+            }else if(opcion == 2){
+             
+             System.out.println("Ingrese la seccion donde esta el vehiculo(0,1,2)");
+                int seccion= in.nextInt();
+                 System.out.println("Ingrese la placa del vehiculo");
+                int placa= in.nextInt(); 
+               int posicion=p.posicionplacaplaca(seccion, placa);
+              System.out.println(p.posicionplacaplaca(seccion, placa));  
+                sacarVehiculo(seccion,posicion,roboco);
+                boolean resultado=p.eliminarVehiculoPlaca(seccion, placa);
+                   if(resultado == true){
+                    System.out.println("Se retiro apropiadamente el auto ");
+                }else{
+                    System.out.println("Problemas sacando el automovil");
+                }
+                                          
+                             
+                                
+        
+              
            
              }else if(opcion == 3){
                  System.out.println("Ingrese el numero de la seccion");
                  int numseccion= in.nextInt();
+                 System.out.println("Lista de vehiculos existentes en la seccion");
                 boolean resultado=p.informacionvehiculos(numseccion); 
                  if(resultado=true){
-                     System.out.println("Lista de vehiculos exitentes en la seccion");
+                     System.out.println("Fin de la lista");
                  }else{
                      System.out.println("Problemas en la impresion de las placas de la seccion");
                  }
