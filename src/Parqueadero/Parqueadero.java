@@ -15,13 +15,14 @@ public class Parqueadero {
     
     private City ciudad;
     private String nombre;
-    private Seccion[] seccion;
-    private int numerodesecciones;
+    private Seccion[] secciones;
+    private double ingresos;
 
-    public Parqueadero(String nombre) {
+    public Parqueadero(String nombre, City ciudad) {
         this.nombre = nombre;
-        this.numerodesecciones=0;
-        this.seccion= new Seccion[3];
+        this.ingresos =0;
+        this.secciones = new Seccion[3];
+        this.ciudad = ciudad;
     }
 
     public City getCiudad() {
@@ -40,148 +41,68 @@ public class Parqueadero {
         this.nombre = nombre;
     }
 
-    public Seccion[] getSeccion() {
-        return seccion;
+    public Seccion[] getSecciones() {
+        return secciones;
     }
 
-    public void setSeccion(Seccion[] seccion) {
-        this.seccion = seccion;
+    public void setSecciones(Seccion[] secciones) {
+        this.secciones = secciones;
+        this.secciones[0].setParqueadero(this);
+        this.secciones[1].setParqueadero(this);
+        System.out.println(secciones[1].getParqueadero().getNombre());
+        this.secciones[2].setParqueadero(this);
     }
 
-    public int getNumerodesecciones() {
-        return numerodesecciones;
+    public double getIngresos() {
+        return ingresos;
     }
 
-    public void setNumerodesecciones(int numerodesecciones) {
-        this.numerodesecciones = numerodesecciones;
+    public void setIngresos(double ingresos) {
+        this.ingresos = ingresos;
     }
-
-   
-
     
-    
- public boolean agregarSeccion(int numeroseccion){
-       Seccion seccion = new Seccion(numeroseccion);
-       if(this.numerodesecciones < 3){
-         this.seccion[this.numerodesecciones] = seccion;
-         this.numerodesecciones++;
-         return true;
-       }else{
-         return false;
-       }
+    public Seccion seccionMenosOcupada(){
+        int disp1 = this.getSecciones()[0].getDisponibilidad();
+        int disp2 = this.getSecciones()[1].getDisponibilidad();
+        int disp3 = this.getSecciones()[2].getDisponibilidad();
+        Seccion menos_ocupada = new Seccion (0);
+        menos_ocupada.setDisponibilidad(0);
+        for (int i = 0; i < 3; i++){
+            if (this.getSecciones()[i].getDisponibilidad() > menos_ocupada.getDisponibilidad()){
+                menos_ocupada = this.getSecciones()[i];
+            }
+        }   
+        return menos_ocupada;
     }
- public boolean agregarSeccionVehiculo(int numeroseccion,int placa,City city,  int i, int i1){
-       boolean resultado = false;
-        for (int j = 0; j < this.numerodesecciones; j++) {
-            if(this.seccion[j].getNumeroseccion()==numeroseccion){
-              resultado = this.seccion[j].agregarvehiculo(placa, city, i, i1);
-              break;
+    public void registrarPago (Vehiculo vehiculo){
+        int minutos = vehiculo.getHoraSalida()-vehiculo.getHoraIngreso();
+        System.out.println("Se ha registrado pago: $" + (minutos*55));
+        this.ingresos = this.ingresos + (minutos*55);
+    }
+    
+    public void eliminarVehiculo (Vehiculo vehiculo){
+        int a = vehiculo.getSeccion().getDisponibilidad();
+        int posicion = 0;
+        int i = 0;
+        for (i = 0; i < 5; i++){
+            if (vehiculo.getPlaca().equals(vehiculo.getSeccion().getVehiculos()[i].getPlaca())){
+                posicion = i;
+                break;
             }
         }
-       return resultado;
-     
-     
- }
- 
- public int Determinanandoseccion(){
-    int num=0;
-    //for(int j=0;j<this.getNumerodesecciones()-1;j++){
-    Seccion[]seccion=this.getSeccion();
-//    int numerovehiculosseccion=seccion[j].getNumvehiculos();
-//    int numerovehiculosseccion1=seccion[j+1].getNumvehiculos();
-if(seccion[0].getNumvehiculos()==seccion[1].getNumvehiculos()&&seccion[1].getNumvehiculos()==seccion[2].getNumvehiculos()){
-    num=0;
-}
-if(seccion[0].getNumvehiculos()<seccion[1].getNumvehiculos()){
-        num=0;
-}else if(seccion[0].getNumvehiculos()>seccion[1].getNumvehiculos()){
-            num=1;  
-            
-      }else if(seccion[1].getNumvehiculos()>seccion[2].getNumvehiculos()){
-       //num=seccion[2].getNumeroseccion();
-       num=2;  
-  
-           
+        int j = posicion;
+        if (a != 4){
+            for (j = posicion; j < (4 - a); j++){
+                System.out.println(vehiculo.getSeccion().getVehiculos()[j+1].getPlaca());
+                vehiculo.getSeccion().setVehiculos(j, vehiculo.getSeccion().getVehiculos()[j+1]);
             }
-    //}
- return  num;
-
- }
- public boolean agregarSeccionVehicularDeterminando(int placa,City city,  int i, int i1){
-    int numerodeseccion=this.Determinanandoseccion();
-     boolean resultado= this.agregarSeccionVehiculo(numerodeseccion, placa, city, i,i1);
-   return resultado;
- 
- }
- 
- 
- 
- 
-     public boolean informacionvehiculos(int numerodeseccion){
-    
-          if (this.seccion[numerodeseccion].getNumeroseccion()==numerodeseccion){ 
-               System.out.println("Seccion"+ numerodeseccion);
-              for(int i=0;i<this.seccion[numerodeseccion].getNumvehiculos();i++){
-                 
-                 System.out.println("Vehiculo"+0+i);
-                    Vehiculo[] vehiculo=this.seccion[numerodeseccion].getVehiculo();
-                    System.out.println(  "Placa  :"+ vehiculo[i].getPlaca()   );
-              }
-              
-             return true;
-              
-        
-           
-          
+            vehiculo.getSeccion().setVehiculos(j+1, null);
         }else{
-              return false;
-          }
-  
-       
-}   
-//   public void ubicarvehiculo(Robot robot){
-//       robot.move();    
-//       
-//       
-//       
-//   }  
- public int posicionplacaplaca(int numerodeseccion, int placa){
-    int num=0;
-    Vehiculo[] vehiculo=this.seccion[numerodeseccion].getVehiculo();
-          if (this.seccion[numerodeseccion].getNumeroseccion()==numerodeseccion){ 
-               
-              for(int i=0;i<this.seccion[numerodeseccion].getNumvehiculos();i++){
-                    if( vehiculo[i].getPlaca()==placa){
-                       num=i;
-                        break;
-                    }
-              }   
-             
-                  
-                 
-              }
-              
-             return num;
-              
-        
-           
-          
+            vehiculo.getSeccion().setVehiculos(j, null);
         }
- public boolean eliminarVehiculoPlaca(int numerodeseccion, int placa){
-                  boolean resultado = false;
-       
-            if(this.seccion[numerodeseccion].getNumeroseccion()==numerodeseccion){
-              resultado = this.seccion[numerodeseccion].eliminarVehiculo(placa);
-            return resultado;
-            }
-        
-       return resultado;
-     
+        int nd = vehiculo.getSeccion().getDisponibilidad();
+        vehiculo.getSeccion().setDisponibilidad(nd +1);
     }
- 
- 
-  
-     
 }
        
     

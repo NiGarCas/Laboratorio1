@@ -11,82 +11,65 @@ import becker.robots.*;
  * @author Nicolas Garcia y Juan David Jaime
  */
 public class Seccion {
-    private int numeroseccion;
-    private Vehiculo[] vehiculo;
-    private int numvehiculos;
+    
+    private int numero;
+    private Vehiculo[] vehiculos;
+    private int disponibilidad;
+    private Parqueadero parqueadero;
 
-    public int getNumeroseccion() {
-        return numeroseccion;
+    public int getNumero() {
+        return numero;
     }
 
-    public void setNumeroseccion(int numeroseccion) {
-        this.numeroseccion = numeroseccion;
+    public void setNumero(int numero) {
+        this.numero = numero;
     }
 
-    public Vehiculo[] getVehiculo() {
-        return vehiculo;
+    public Vehiculo[] getVehiculos() {
+        return vehiculos;
     }
 
-    public void setVehiculo(Vehiculo[] vehiculo) {
-        this.vehiculo = vehiculo;
+    public void setVehiculos( int pos, Vehiculo vehiculo) {
+        this.vehiculos[pos] = vehiculo;
     }
 
-    public int getNumvehiculos() {
-        return numvehiculos;
+    public int getDisponibilidad() {
+        return disponibilidad;
     }
 
-    public void setNumvehiculos(int numvehiculos) {
-        this.numvehiculos = numvehiculos;
-    }
-
-   
-
-    public Seccion(int numeroseccion) {
-        this.numeroseccion = numeroseccion;
-        this.vehiculo=new Vehiculo[5];
-        this.numvehiculos=0;
+    public void setDisponibilidad(int disponibilidad) {
+        this.disponibilidad = disponibilidad;
     }
     
-    public boolean agregarvehiculo(int placa, City city, int i, int i1){
-    Vehiculo vehiculo=new Vehiculo(placa,city,5,7);
-    if(numvehiculos<5){
-        this.vehiculo[this.numvehiculos]=vehiculo;
-        this.numvehiculos++;
-               return true;
-    }else{
-    
-    
-    return false;
-   
+    public Parqueadero getParqueadero() {
+        return parqueadero;
+    }
+
+    public void setParqueadero(Parqueadero parqueadero) {
+        this.parqueadero = parqueadero;
     }
     
+    public Seccion(int numero) {
+        this.numero = numero;
+        this.vehiculos=new Vehiculo[5];
+        this.disponibilidad = 5;
+    }
+    
+    public void mostrarVehiculos(){
+        if (this.disponibilidad != 5){
+            System.out.println("Vehiculos de la seccion "+ this.numero+": ");
+            for (int i = 0; i < (5 - this.disponibilidad); i++){
+            System.out.println(" - " + this.getVehiculos()[i].getPlaca());
+            }
+            System.out.println(" ");
+        }else{
+            System.out.println("La seccion " + this.numero + " no tiene vehiculos actualmente");
+            System.out.println(" ");
+        }
+        
+    }
+ 
 }
-   
-    public boolean eliminarVehiculo(int placa){
-       if(this.numvehiculos>0){
-           for(int i =0; i<this.numvehiculos;i++){
-           if(this.vehiculo[i].getPlaca()==placa){
-              this.vehiculo[i]=null;
-                 for(int j=i; j<this.numvehiculos-1;j++){
-                 this.vehiculo[j]=this.vehiculo[j+1];
-                 }                  
-                 break;
-           
-           }
-     
-      }
-       
-       
-       this.numvehiculos--;
-       return true;
-       }else
-           return false;
-                
-                
-         }
-          
-          
-    }
 
  
     

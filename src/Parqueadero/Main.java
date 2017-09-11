@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package Parqueadero;
-import Parqueadero.*;
 import becker.robots.*;
 import java.util.*;
 
@@ -17,2174 +16,1024 @@ public class Main {
      robot.turnLeft();
      robot.turnLeft();
      robot.turnLeft();
-   }
+    }
+    
     public static void girarEspalda(Robot robot){
      robot.turnLeft();
      robot.turnLeft();
         
     }
-    public static void mover1(Robot robot){
-        robot.move();
-        
-    }
-    public static void mover2(Robot robot){
-        robot.move();
-         robot.move();
-    }
-    public static void mover3(Robot robot){
-         robot.move(); 
-         robot.move();
-         robot.move();
-    }
-    public static void mover4(Robot robot){
-        for(int i=0;i<4;i++){
-             robot.move();
+    
+    public static void moverNveces(Robot robot, int veces){
+        for (int i = 1; i <= veces; i++){
+            robot.move();
         }
     }
-    public static void mover5(Robot robot){
-                for(int i=0;i<5;i++){
-             robot.move();
+    
+    public static void ubicarVehiculo (Robot conductor, Vehiculo vehiculo){
+        int seccion = vehiculo.getSeccion().getNumero();
+        int disponibilidad = vehiculo.getSeccion().getDisponibilidad();
+        int u = 7 - seccion;
+        conductor.move();
+        conductor.pickThing();
+        girarDerecha(conductor);
+        moverNveces(conductor, u);
+        girarDerecha(conductor);
+        moverNveces(conductor, disponibilidad);
+        conductor.putThing();
+        girarEspalda(conductor);
+        moverNveces(conductor, disponibilidad);
+        conductor.turnLeft();
+        moverNveces(conductor, u);
+        conductor.turnLeft();
+        conductor.move();
+        girarEspalda(conductor);
+        int pos = 5 - vehiculo.getSeccion().getDisponibilidad();
+        vehiculo.getSeccion().setVehiculos(pos,vehiculo);
+        vehiculo.getSeccion().setDisponibilidad(vehiculo.getSeccion().getDisponibilidad() - 1);
+    }
+    
+    public static void ubicarEnZT (Robot conductor, Vehiculo vehiculo){
+        int seccion = vehiculo.getSeccion().getNumero();
+        int num_vehiculo = 0;
+        for (int i=0;i< 5; i++){
+            if (vehiculo == vehiculo.getSeccion().getVehiculos()[i] ){
+                num_vehiculo = i+1;
+                break;
+            }
+        }
+        int disponibilidad = vehiculo.getSeccion().getDisponibilidad();
+        int u = 7 - seccion;
+        switch (num_vehiculo){
+            case 1:
+                switch (disponibilidad){
+                    case 0:
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u);
+                        girarDerecha(conductor);
+                        conductor.move();
+                        conductor.pickThing();
+                        girarEspalda(conductor);
+                        conductor.move();
+                        conductor.turnLeft();
+                        moverNveces(conductor, u-3);
+                        conductor.turnLeft();
+                        conductor.move();
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u-3);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 2);
+                        conductor.pickThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 2);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u-2);
+                        conductor.turnLeft();
+                        conductor.move();
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u-2);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 3);
+                        conductor.pickThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 3);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u-1);
+                        conductor.turnLeft();
+                        conductor.move();
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u-1);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 4);
+                        conductor.pickThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 4);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u);
+                        conductor.turnLeft();
+                        conductor.move();
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        break;
+                    case 1:
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 2);
+                        conductor.pickThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 2);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u-3);
+                        conductor.turnLeft();
+                        conductor.move();
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u-3);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 3);
+                        conductor.pickThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 3);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u-2);
+                        conductor.turnLeft();
+                        conductor.move();
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u-2);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 4);
+                        conductor.pickThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 4);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u-1);
+                        conductor.turnLeft();
+                        conductor.move();
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        
+                        moverNveces(conductor, 1);
+                        conductor.turnLeft();
+                        moverNveces(conductor, 1);
+                        conductor.turnLeft();
+                        moverNveces(conductor, 1);
+                        girarEspalda(conductor);
+                        break;
+                    case 2:
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 3);
+                        conductor.pickThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 3);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u-3);
+                        conductor.turnLeft();
+                        conductor.move();
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u-3);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 4);
+                        conductor.pickThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 4);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u-2);
+                        conductor.turnLeft();
+                        conductor.move();
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        
+                        moverNveces(conductor, 1);
+                        conductor.turnLeft();
+                        moverNveces(conductor, 2);
+                        conductor.turnLeft();
+                        moverNveces(conductor, 1);
+                        girarEspalda(conductor);
+                        break;
+                    case 3:
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 4);
+                        conductor.pickThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 4);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u-3);
+                        conductor.turnLeft();
+                        conductor.move();
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        
+                        moverNveces(conductor, 1);
+                        conductor.turnLeft();
+                        moverNveces(conductor, 3);
+                        conductor.turnLeft();
+                        moverNveces(conductor, 1);
+                        girarEspalda(conductor);
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 2:
+                switch (disponibilidad){
+                    case 0:
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u);
+                        girarDerecha(conductor);
+                        conductor.move();
+                        conductor.pickThing();
+                        girarEspalda(conductor);
+                        conductor.move();
+                        conductor.turnLeft();
+                        moverNveces(conductor, u-3);
+                        conductor.turnLeft();
+                        conductor.move();
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u-3);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 2);
+                        conductor.pickThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 2);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u-2);
+                        conductor.turnLeft();
+                        conductor.move();
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u-2);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 3);
+                        conductor.pickThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 3);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u-1);
+                        conductor.turnLeft();
+                        conductor.move();
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        
+                        moverNveces(conductor, 1);
+                        conductor.turnLeft();
+                        moverNveces(conductor, 1);
+                        conductor.turnLeft();
+                        moverNveces(conductor, 1);
+                        girarEspalda(conductor);
+                        break;
+                    case 1:
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 2);
+                        conductor.pickThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 2);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u-3);
+                        conductor.turnLeft();
+                        conductor.move();
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u-3);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 3);
+                        conductor.pickThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 3);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u-2);
+                        conductor.turnLeft();
+                        conductor.move();
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        
+                        moverNveces(conductor, 1);
+                        conductor.turnLeft();
+                        moverNveces(conductor, 2);
+                        conductor.turnLeft();
+                        moverNveces(conductor, 1);
+                        girarEspalda(conductor);
+                        break;
+                    case 2:
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 3);
+                        conductor.pickThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 3);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u-3);
+                        conductor.turnLeft();
+                        conductor.move();
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        
+                        moverNveces(conductor, 1);
+                        conductor.turnLeft();
+                        moverNveces(conductor, 3);
+                        conductor.turnLeft();
+                        moverNveces(conductor, 1);
+                        girarEspalda(conductor);
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 3:
+                switch (disponibilidad){
+                    case 0:
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u);
+                        girarDerecha(conductor);
+                        conductor.move();
+                        conductor.pickThing();
+                        girarEspalda(conductor);
+                        conductor.move();
+                        conductor.turnLeft();
+                        moverNveces(conductor, u-3);
+                        conductor.turnLeft();
+                        conductor.move();
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u-3);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 2);
+                        conductor.pickThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 2);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u-2);
+                        conductor.turnLeft();
+                        conductor.move();
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        
+                        moverNveces(conductor, 1);
+                        conductor.turnLeft();
+                        moverNveces(conductor, 2);
+                        conductor.turnLeft();
+                        moverNveces(conductor, 1);
+                        girarEspalda(conductor);
+                        break;
+                    case 1:
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 2);
+                        conductor.pickThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 2);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u-3);
+                        conductor.turnLeft();
+                        conductor.move();
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        
+                        moverNveces(conductor, 1);
+                        conductor.turnLeft();
+                        moverNveces(conductor, 3);
+                        conductor.turnLeft();
+                        moverNveces(conductor, 1);
+                        girarEspalda(conductor);
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 4:
+                switch (disponibilidad){
+                    case 0:
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u);
+                        girarDerecha(conductor);
+                        conductor.move();
+                        conductor.pickThing();
+                        girarEspalda(conductor);
+                        conductor.move();
+                        conductor.turnLeft();
+                        moverNveces(conductor, u-3);
+                        conductor.turnLeft();
+                        conductor.move();
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        
+                        moverNveces(conductor, 1);
+                        conductor.turnLeft();
+                        moverNveces(conductor, 3);
+                        conductor.turnLeft();
+                        moverNveces(conductor, 1);
+                        girarEspalda(conductor);
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            default:
+                break;
         }
     }
-    public static void mover6(Robot robot){
-           for(int i=0;i<6;i++){
-             robot.move();
-    }
-    }
-    public static void mover7(Robot robot){
-           for(int i=0;i<7;i++){
-             robot.move();
-    }
-    }
-    public static void mover8(Robot robot){
-           for(int i=0;i<8;i++){
-             robot.move();
-              }
-           }
     
-          public static void sacarTemporalIzquierda(Robot robot){
-              robot.turnLeft();
-              robot.move();
-              robot.pickThing();
-              girarEspalda(robot);
-              robot.move();
-              girarDerecha(robot);
-          }
-         public static void sacarTemporalDerecha(Robot robot){
-           girarDerecha(robot);
-           robot.move();
-           robot.pickThing();
-           girarEspalda(robot);
-           robot.move();
-           girarDerecha(robot);            
-               
-         }
-          public static void ponerTemporalDerecha(Robot robot){
-           girarDerecha(robot);
-           robot.move();
-           robot.putThing();
-           girarEspalda(robot);
-           robot.move();
-           girarDerecha(robot);            
-               
-         }
-            public static void ponerTemporalIzquierda(Robot robot){
-           robot.turnLeft();
-           robot.move();
-           robot.putThing();
-           girarEspalda(robot);
-           robot.move();
-           girarDerecha(robot);            
-               
-         }
-    
-    
-    
-    
-    public static void ingresarVehiculo(Robot robot,int seccion){
-        if(seccion==0){
-            robot.pickThing();
-               for(int i=0;i<7;i++){
-                robot.move();
-               }
-            girarDerecha(robot);
-                for(int i=0;i<5;i++){
-                robot.move();
-                }
-            
-                robot.turnLeft();
-                
-                robot.turnLeft();
-            for(int i=0;i<5;i++){
-                  if(robot.canPickThing()){
-                  robot.move();
-                  }else if(robot.canPickThing()==false){
-                      if(robot.countThingsInBackpack()==1)
-                      robot.putThing();
-                      robot.move();
-
-                  }
-
+    public static void sacarVehiculo (Robot conductor, Vehiculo vehiculo){
+        int seccion = vehiculo.getSeccion().getNumero();
+        int u = 7 - seccion;
+        int num_vehiculo = 0;
+        for (int i=0;i< 5; i++){
+            if (vehiculo == vehiculo.getSeccion().getVehiculos()[i] ){
+                num_vehiculo = i+1;
+                break;
             }
-            robot.turnLeft();
-               for(int i=0;i<7;i++){
-                robot.move();
-               }
-            robot.turnLeft();
-             robot.turnLeft();
-            
-        }else if(seccion==1){
-              
-                robot.pickThing();
-               for(int i=0;i<6;i++){
-                robot.move();
-               }
-            girarDerecha(robot);
-                for(int i=0;i<5;i++){
-                robot.move();
-                }
-            
-                robot.turnLeft();
-                
-                robot.turnLeft();
-            for(int i=0;i<5;i++){
-                  if(robot.canPickThing()){
-                  robot.move();
-                  }else if(robot.canPickThing()==false){
-                      if(robot.countThingsInBackpack()==1)
-                      robot.putThing();
-                      robot.move();
-
-                  }
-
-            }
-            robot.turnLeft();
-               for(int i=0;i<6;i++){
-                robot.move();
-               }
-            robot.turnLeft();
-             robot.turnLeft();
-                
-        }else if(seccion==2){
-            robot.pickThing();
-               for(int i=0;i<5;i++){
-                robot.move();
-               }
-            girarDerecha(robot);
-                for(int i=0;i<5;i++){
-                robot.move();
-                }
-            
-                robot.turnLeft();
-                
-                robot.turnLeft();
-            for(int i=0;i<5;i++){
-                  if(robot.canPickThing()){
-                  robot.move();
-                  }else if(robot.canPickThing()==false){
-                      if(robot.countThingsInBackpack()==1)
-                      robot.putThing();
-                      robot.move();
-
-                  }
-
-            }
-            robot.turnLeft();
-               for(int i=0;i<5;i++){
-                robot.move();
-               }
-            robot.turnLeft();
-             robot.turnLeft();
-               
-            
-         }
-        
-   }
- public static void sacarVehiculo(int seccion,int posicion,Robot robot){
-     if(seccion==0){
-         if(posicion==4){
-               mover7(robot);
-               girarDerecha(robot);
-               robot.move();
-               robot.pickThing();
-               girarEspalda(robot);
-               robot.move();
-               robot.turnLeft();
-               for(int i=0;i<8;i++){
-                robot.move();
-               }
-               robot.putThing();
-              girarEspalda(robot);
-               robot.move();
-         }else if(posicion==3){
-               mover7(robot);
-               girarDerecha(robot);
-               robot.move();
-               if(robot.canPickThing()){
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   robot.move();
-                   robot.turnLeft();
-                   mover3(robot);  
-                   robot.turnLeft();
-                   robot.move();
-                   robot.putThing();
-                   girarEspalda(robot);
-                   robot.move();
-                   girarDerecha(robot);
-                  mover3(robot);
-                   girarDerecha(robot);
-                   mover2(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover2(robot);
-                    robot.turnLeft();
-                  mover8(robot);
-                   robot.putThing();
-                    girarEspalda(robot);
-                   mover5(robot);
-                   girarDerecha(robot);
-                   robot.move();
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   robot.move();
-                   girarDerecha(robot);
-                   mover3(robot);
-                   girarDerecha(robot);
-                   mover2(robot);
-                   robot.putThing();
-                   girarEspalda(robot);
-                   mover2(robot);
-                   robot.turnLeft();
-                   mover7(robot);
-                   girarEspalda(robot);
-               
-               }else {
-               
-               robot.move();
-               robot.pickThing();
-               girarEspalda(robot);
-               mover2(robot);
-               robot.turnLeft();
-               mover8(robot);
-               robot.putThing();
-               girarEspalda(robot);
-               robot.move();
-               }
-               
-               
-         
-               
-                   
-             
-         }else if(posicion==2){
-              mover7(robot);
-               girarDerecha(robot);
-               robot.move();
-               if(robot.canPickThing()){
-                    robot.pickThing();
-                   girarEspalda(robot);
-                  robot.move();
-                   robot.turnLeft();
-                   mover3(robot);  //cambia
-                 ponerTemporalIzquierda(robot);
-                  mover3(robot);//cambia
-                   girarDerecha(robot);
-                   mover2(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);    
-                   mover2(robot);
-                   robot.turnLeft();
-                   mover4(robot);//cambia
-                   ponerTemporalIzquierda(robot);
-                   mover4(robot);//cambia
-                   girarDerecha(robot);
-                   mover3(robot);
-                   robot.pickThing();
-               girarEspalda(robot);
-               mover3(robot);
-               robot.turnLeft();
-               mover8(robot);//cambia
-               robot.putThing();
-               girarEspalda(robot);
-               mover4(robot);
-               sacarTemporalDerecha(robot);
-               mover4(robot);
-               girarDerecha(robot);
-               mover3(robot);
-               robot.putThing();
-               girarEspalda(robot);
-               mover3(robot);
-               robot.turnLeft();
-               mover3(robot);//cambia
-               sacarTemporalIzquierda(robot);
-               mover3(robot);//cambia
-               girarDerecha(robot);
-               mover2(robot);
-               robot.putThing();
-               girarEspalda(robot);               
-               mover2(robot); 
-               robot.turnLeft();
-               mover7(robot);//cambia
-               girarEspalda(robot);                            
-                   
-                   
-               
-               }else if(robot.canPickThing()==false){
-                   robot.move();
-                  if(robot.canPickThing()){
-                       robot.pickThing();
-                   girarEspalda(robot);
-                   mover2(robot);
-                   robot.turnLeft();
-                   mover3(robot);  
-                 ponerTemporalIzquierda(robot);
-                  mover3(robot);
-                   girarDerecha(robot);
-                   mover3(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover3(robot);
-                    robot.turnLeft();
-                  mover8(robot);
-                   robot.putThing();
-                    girarEspalda(robot);
-                   mover5(robot);
-                   sacarTemporalDerecha(robot);
-                   mover3(robot);
-                   girarDerecha(robot);
-                   mover3(robot);
-                   robot.putThing();
-                   girarEspalda(robot);
-                   mover3(robot);
-                   robot.turnLeft();
-                   mover7(robot);
-                   girarEspalda(robot);
-                       
-                       
-                 }
-               else{
-              robot.move();
-                
-              
-               robot.pickThing();
-               girarEspalda(robot);
-               mover3(robot);
-               robot.turnLeft();
-               mover8(robot);
-               robot.putThing();
-               girarEspalda(robot);
-               robot.move();
-                   }
-             
-               }
-         }else if(posicion==1){
-              mover7(robot);
-               girarDerecha(robot);
-               robot.move();
-               if(robot.canPickThing()){
-                    robot.pickThing();
-                   girarEspalda(robot);
-                  robot.move();
-                   robot.turnLeft();
-                   mover3(robot);  //cambia
-                 ponerTemporalIzquierda(robot);
-                  mover3(robot);//cambia
-                   girarDerecha(robot);
-                   mover2(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);    
-                   mover2(robot);
-                   robot.turnLeft();
-                   mover4(robot);//cambia
-                   ponerTemporalIzquierda(robot);
-                   mover4(robot);//cambia
-                   girarDerecha(robot);
-                   mover3(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover3(robot);
-                   robot.turnLeft();
-                   mover5(robot);//cambia
-                   ponerTemporalIzquierda(robot);
-                   mover5(robot);//cambia
-                       
-                   girarDerecha(robot);
-                   mover4(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover4(robot);
-                   robot.turnLeft();
-                   mover8(robot);//cambia
-                   robot.putThing();
-                   girarEspalda(robot);
-               mover3(robot);
-               sacarTemporalDerecha(robot);
-               mover5(robot);//cambia
-               girarDerecha(robot);
-               mover4(robot);
-               robot.putThing();
-               girarEspalda(robot);
-                mover4(robot);
-               robot.turnLeft();
-               mover4(robot);//cambia
-                         
-                           
-               sacarTemporalIzquierda(robot);
-               mover4(robot);
-               girarDerecha(robot);
-               mover3(robot);
-               robot.putThing();
-               girarEspalda(robot);
-               mover3(robot);
-               robot.turnLeft();
-               mover3(robot);//cambia
-               sacarTemporalIzquierda(robot);
-               mover3(robot);//cambia
-               girarDerecha(robot);
-               mover2(robot);
-               robot.putThing();
-               girarEspalda(robot);               
-               mover2(robot); 
-               robot.turnLeft();
-               mover7(robot);//cambia
-               girarEspalda(robot);                            
-                   
-                   
-               
-               }else if(robot.canPickThing()==false){
-                     robot.move();
-                           if(robot.canPickThing()){
-                           robot.pickThing();
-                           girarEspalda(robot);
-                           mover2(robot);
-                           robot.turnLeft();
-                           mover3(robot);  //cambia
-                           ponerTemporalIzquierda(robot);
-                           mover3(robot);//cambia
-                           girarDerecha(robot);
-                           mover3(robot);
-                           robot.pickThing();
-                           girarEspalda(robot);    
-                           mover3(robot);
-                           robot.turnLeft();
-                           mover4(robot);//cambia
-                           ponerTemporalIzquierda(robot);
-                           mover4(robot);//cambia
-                           girarDerecha(robot);
-                           mover4(robot);
-                           robot.pickThing();
-                           girarEspalda(robot);
-                           mover4(robot);
-                           robot.turnLeft();
-                           mover8(robot);//cambia
-                           robot.putThing();
-                           girarEspalda(robot);
-                           mover4(robot);
-                           sacarTemporalDerecha(robot);
-                           mover4(robot);//cambia
-                           girarDerecha(robot);
-                           mover4(robot);
-                           robot.putThing();
-                           girarEspalda(robot);
-                           mover4(robot);
-                           robot.turnLeft();
-                           mover3(robot);//cambia
-                           sacarTemporalIzquierda(robot);
-                           mover3(robot);//cambia
-                           girarDerecha(robot);
-                           mover3(robot);
-                           robot.putThing();
-                           girarEspalda(robot);               
-                           mover3(robot); 
-                           robot.turnLeft();
-                           mover7(robot);//cambia
-                           girarEspalda(robot);                            
-
-
-               
-               }else if(robot.canPickThing()==false){
-                   robot.move();
-                  if(robot.canPickThing()){
-                       robot.pickThing();
-                   girarEspalda(robot);
-                   mover3(robot);
-                   robot.turnLeft();
-                   mover3(robot);//cambia  
-                 ponerTemporalIzquierda(robot);
-                  mover3(robot);//cambia
-                   girarDerecha(robot);
-                   mover4(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover4(robot);
-                    robot.turnLeft();
-                  mover8(robot);//cambia
-                   robot.putThing();
-                    girarEspalda(robot);
-                   mover5(robot);//cambia
-                   sacarTemporalDerecha(robot);
-                   mover3(robot);//cambia
-                   girarDerecha(robot);
-                   mover4(robot);
-                   robot.putThing();
-                   girarEspalda(robot);
-                   mover4(robot);
-                   robot.turnLeft();
-                   mover7(robot);//cambia
-                   girarEspalda(robot);
-                       
-                       
-                 }
-               else{
-              robot.move();
-                
-              
-               robot.pickThing();
-               girarEspalda(robot);
-               mover4(robot);
-               robot.turnLeft();
-               mover8(robot);//cambia
-               robot.putThing();
-               girarEspalda(robot);
-               robot.move();
-                   }
-             
-               }
-                   
-                   
-                   
-               }
-    }else if(posicion==0){
-         mover7(robot);//CAMBIA
-               girarDerecha(robot);
-               robot.move();
-               if(robot.canPickThing()){
-                    robot.pickThing();
-                   girarEspalda(robot);
-                  robot.move();
-                   robot.turnLeft();
-                   mover3(robot);  //cambia
-                 ponerTemporalIzquierda(robot);
-                  mover3(robot);//cambia
-                   girarDerecha(robot);
-                   mover2(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);    
-                   mover2(robot);
-                   robot.turnLeft();
-                   mover4(robot);//cambia
-                   ponerTemporalIzquierda(robot);
-                   mover4(robot);//cambia
-                   girarDerecha(robot);
-                   mover3(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover3(robot);
-                   robot.turnLeft();
-                   mover5(robot);//cambia
-                   ponerTemporalIzquierda(robot);
-                   mover5(robot);//cambia
-                       
-                   girarDerecha(robot);
-                   mover4(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover4(robot);
-                   robot.turnLeft();
-                   mover6(robot);//cambia
-                   ponerTemporalIzquierda(robot);
-                   mover6(robot);//cambia
-                   girarDerecha(robot);
-                   mover5(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover5(robot);
-                   robot.turnLeft();
-                   mover8(robot);//cambia
-                   robot.putThing();
-                   girarEspalda(robot);
-                   mover2(robot);
-                   sacarTemporalDerecha(robot);
-                   mover6(robot);//cambia
-                   girarDerecha(robot);
-                   mover5(robot);
-                   robot.putThing();
-                   girarEspalda(robot);
-                   mover5(robot);
-                   robot.turnLeft();
-                   
-                  mover5(robot);//CAMBIA
-                sacarTemporalIzquierda(robot);
-               mover5(robot);//cambia
-               girarDerecha(robot);
-               mover4(robot);
-               robot.putThing();
-               girarEspalda(robot);
-                mover4(robot);
-               robot.turnLeft();
-               mover4(robot);//cambia
-                         
-                           
-               sacarTemporalIzquierda(robot);
-               mover4(robot);//cambia FALLO EN SECCION 1
-               girarDerecha(robot);
-               mover3(robot);
-               robot.putThing();
-               girarEspalda(robot);
-               mover3(robot);
-               robot.turnLeft();
-               mover3(robot);//cambia
-               sacarTemporalIzquierda(robot);
-               mover3(robot);//cambia
-               girarDerecha(robot);
-               mover2(robot);
-               robot.putThing();
-               girarEspalda(robot);               
-               mover2(robot); 
-               robot.turnLeft();
-               mover7(robot);//cambia
-               girarEspalda(robot);                            
-                   
-                   
-               
-               }else if(robot.canPickThing()==false){
-                 robot.move();
-               if(robot.canPickThing()){
-                    robot.pickThing();
-                   girarEspalda(robot);
-                  mover2(robot);
-                   robot.turnLeft();
-                   mover3(robot);  //cambia
-                 ponerTemporalIzquierda(robot);
-                  mover3(robot);//cambia
-                   girarDerecha(robot);
-                   mover3(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);    
-                   mover3(robot);
-                   robot.turnLeft();
-                   mover4(robot);//cambia
-                   ponerTemporalIzquierda(robot);
-                   mover4(robot);//cambia
-                   girarDerecha(robot);
-                   mover4(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover4(robot);
-                   robot.turnLeft();
-                   mover5(robot);//cambia
-                   ponerTemporalIzquierda(robot);
-                   mover5(robot);//cambia
-                       
-                   girarDerecha(robot);
-                   mover5(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover5(robot);
-                   robot.turnLeft();
-                   mover8(robot);//cambia
-                   robot.putThing();
-                   girarEspalda(robot);
-               mover3(robot);
-               sacarTemporalDerecha(robot);
-               mover5(robot);//cambia
-               girarDerecha(robot);
-               mover5(robot);
-               robot.putThing();
-               girarEspalda(robot);
-                mover5(robot);
-               robot.turnLeft();
-               mover4(robot);//cambia
-                         
-                           
-               sacarTemporalIzquierda(robot);
-               mover4(robot);//cambia
-               girarDerecha(robot);
-               mover4(robot);
-               robot.putThing();
-               girarEspalda(robot);
-               mover4(robot);
-               robot.turnLeft();
-               mover3(robot);//cambia
-               sacarTemporalIzquierda(robot);
-               mover3(robot);//cambia
-               girarDerecha(robot);
-               mover3(robot);
-               robot.putThing();
-               girarEspalda(robot);               
-               mover3(robot); 
-               robot.turnLeft();
-               mover7(robot);//cambia
-               girarEspalda(robot);                            
-                   
-                   
-               
-               }else if(robot.canPickThing()==false){
-                     robot.move();
-                           if(robot.canPickThing()){
-                           robot.pickThing();
-                           girarEspalda(robot);
-                           mover3(robot);
-                           robot.turnLeft();
-                           mover3(robot);  //cambia
-                           ponerTemporalIzquierda(robot);
-                           mover3(robot);//cambia
-                           girarDerecha(robot);
-                           mover4(robot);
-                           robot.pickThing();
-                           girarEspalda(robot);    
-                           mover4(robot);
-                           robot.turnLeft();
-                           mover4(robot);//cambia
-                           ponerTemporalIzquierda(robot);
-                           mover4(robot);//cambia
-                           girarDerecha(robot);
-                           mover5(robot);
-                           robot.pickThing();
-                           girarEspalda(robot);
-                           mover5(robot);
-                           robot.turnLeft();
-                           mover8(robot);//cambia
-                           robot.putThing();
-                           girarEspalda(robot);
-                           mover4(robot);
-                           sacarTemporalDerecha(robot);
-                           mover4(robot);//cambia
-                           girarDerecha(robot);
-                           mover5(robot);
-                           robot.putThing();
-                           girarEspalda(robot);
-                           mover5(robot);
-                           robot.turnLeft();
-                           mover3(robot);//cambia
-                           sacarTemporalIzquierda(robot);
-                           mover3(robot);//cambia
-                           girarDerecha(robot);
-                           mover4(robot);
-                           robot.putThing();
-                           girarEspalda(robot);               
-                           mover4(robot); 
-                           robot.turnLeft();
-                           mover7(robot);//cambia
-                           girarEspalda(robot);                            
-
-
-               
-               }else if(robot.canPickThing()==false){
-                   robot.move();
-                  if(robot.canPickThing()){
-                       robot.pickThing();
-                   girarEspalda(robot);
-                   mover4(robot);
-                   robot.turnLeft();
-                   mover3(robot);//cambia  
-                 ponerTemporalIzquierda(robot);
-                  mover3(robot);//cambia
-                   girarDerecha(robot);
-                   mover5(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover5(robot);
-                    robot.turnLeft();
-                  mover8(robot);//cambia
-                   robot.putThing();
-                    girarEspalda(robot);
-                   mover5(robot);//cambia+1
-                   sacarTemporalDerecha(robot);
-                   mover3(robot);//cambia-1
-                   girarDerecha(robot);
-                   mover5(robot);
-                   robot.putThing();
-                   girarEspalda(robot);
-                   mover5(robot);
-                   robot.turnLeft();
-                   mover7(robot);//cambia
-                   girarEspalda(robot);
-                       
-                       
-                 }
-               else{
-              robot.move();
-                
-              
-               robot.pickThing();
-               girarEspalda(robot);
-               mover5(robot);
-               robot.turnLeft();
-               mover8(robot);//cambia
-               robot.putThing();
-               girarEspalda(robot);
-               robot.move();
-                   }
-             
-               }
-                   
-                   
-                   
-               }
-                     
-                   
-                   
-               }
-         
-        
-    }
- }else if(seccion==1){
-     if(posicion==4){
-           mover6(robot);
-               girarDerecha(robot);
-               robot.move();
-               robot.pickThing();
-               girarEspalda(robot);
-               robot.move();
-               robot.turnLeft();
-               mover7(robot);
-               robot.putThing();
-              girarEspalda(robot);
-               robot.move();
+        }
+        int v = 6 - num_vehiculo;
+        conductor.move();
+        girarDerecha(conductor);
+        moverNveces(conductor, u);
+        girarDerecha(conductor);
+        moverNveces(conductor, v);
+        conductor.pickThing();
+        girarEspalda(conductor);
+        moverNveces(conductor, v);
+        conductor.turnLeft();
+        moverNveces(conductor, u+1);
+        conductor.putThing();
+        girarEspalda(conductor);
+        conductor.move();
+        girarDerecha(conductor);
+        conductor.move();
+        girarEspalda(conductor);
+    }    
      
-         }else if(posicion==3){
-          mover6(robot);
-               girarDerecha(robot);
-               robot.move();
-               if(robot.canPickThing()){
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   robot.move();
-                   robot.turnLeft();
-                   mover2(robot);  
-                   ponerTemporalIzquierda(robot);
-                   
-                 
-                  mover2(robot);
-                   girarDerecha(robot);
-                   mover2(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover2(robot);
-                    robot.turnLeft();
-                  mover7(robot);
-                   robot.putThing();
-                    girarEspalda(robot);
-                   mover5(robot);
-                   sacarTemporalDerecha(robot);
-                   mover2(robot);
-                   girarDerecha(robot);
-                   mover2(robot);
-                   robot.putThing();
-                   girarEspalda(robot);
-                   mover2(robot);
-                   robot.turnLeft();
-                   mover6(robot);
-                   girarEspalda(robot);
-         
-         }else{
-                    robot.move();
-               robot.pickThing();
-               girarEspalda(robot);
-               mover2(robot);
-               robot.turnLeft();
-               mover7(robot);
-               robot.putThing();
-               girarEspalda(robot);
-               robot.move();
-               }
-         }else if(posicion==2){
-               mover6(robot);
-               girarDerecha(robot);
-               robot.move();
-               if(robot.canPickThing()){
-                    robot.pickThing();
-                   girarEspalda(robot);
-                  robot.move();
-                   robot.turnLeft();
-                   mover2(robot);  //cambia
-                 ponerTemporalIzquierda(robot);
-                  mover2(robot);//cambia
-                   girarDerecha(robot);
-                   mover2(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);    
-                   mover2(robot);
-                   robot.turnLeft();
-                   mover3(robot);//cambia
-                   ponerTemporalIzquierda(robot);
-                   mover3(robot);//cambia
-                   girarDerecha(robot);
-                   mover3(robot);
-                   robot.pickThing();
-               girarEspalda(robot);
-               mover3(robot);
-               robot.turnLeft();
-               mover7(robot);//cambia
-               robot.putThing();
-               girarEspalda(robot);
-               mover4(robot);
-               sacarTemporalDerecha(robot);
-               mover3(robot);//cambia
-               girarDerecha(robot);
-               mover3(robot);
-               robot.putThing();
-               girarEspalda(robot);
-               mover3(robot);
-               robot.turnLeft();
-               mover2(robot);//cambia
-               sacarTemporalIzquierda(robot);
-               mover2(robot);//cambia
-               girarDerecha(robot);
-               mover2(robot);
-               robot.putThing();
-               girarEspalda(robot);               
-               mover2(robot); 
-               robot.turnLeft();
-               mover6(robot);//cambia
-               girarEspalda(robot);                            
-                   
-                   
-               
-               }else if(robot.canPickThing()==false){
-                   robot.move();
-                  if(robot.canPickThing()){
-                       robot.pickThing();
-                   girarEspalda(robot);
-                   mover2(robot);
-                   robot.turnLeft();
-                   mover2(robot);  
-                 ponerTemporalIzquierda(robot);
-                  mover2(robot);
-                   girarDerecha(robot);
-                   mover3(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover3(robot);
-                    robot.turnLeft();
-                  mover7(robot);
-                   robot.putThing();
-                    girarEspalda(robot);
-                   mover5(robot);
-                   sacarTemporalDerecha(robot);
-                   mover2(robot);
-                   girarDerecha(robot);
-                   mover3(robot);
-                   robot.putThing();
-                   girarEspalda(robot);
-                   mover3(robot);
-                   robot.turnLeft();
-                   mover6(robot);
-                   girarEspalda(robot);
-                       
-                       
-                 }
-               else{
-              robot.move();
-                
-              
-               robot.pickThing();
-               girarEspalda(robot);
-               mover3(robot);
-               robot.turnLeft();
-               mover7(robot);//cambia
-               robot.putThing();
-               girarEspalda(robot);
-               robot.move();
-                   }
-             
-               }
-         
-         }else if(posicion==1){
-         
-              mover6(robot);//CAMBIA
-               girarDerecha(robot);
-               robot.move();
-               if(robot.canPickThing()){
-                    robot.pickThing();
-                   girarEspalda(robot);
-                  robot.move();
-                   robot.turnLeft();
-                   mover2(robot);  //cambia
-                 ponerTemporalIzquierda(robot);
-                  mover2(robot);//cambia
-                   girarDerecha(robot);
-                   mover2(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);    
-                   mover2(robot);
-                   robot.turnLeft();
-                   mover3(robot);//cambia
-                   ponerTemporalIzquierda(robot);
-                   mover3(robot);//cambia
-                   girarDerecha(robot);
-                   mover3(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover3(robot);
-                   robot.turnLeft();
-                   mover4(robot);//cambia
-                   ponerTemporalIzquierda(robot);
-                   mover4(robot);//cambia
-                       
-                   girarDerecha(robot);
-                   mover4(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover4(robot);
-                   robot.turnLeft();
-                   mover7(robot);//cambia
-                   robot.putThing();
-                   girarEspalda(robot);
-               mover3(robot);
-               sacarTemporalDerecha(robot);
-               mover4(robot);//cambia
-               girarDerecha(robot);
-               mover4(robot);
-               robot.putThing();
-               girarEspalda(robot);
-                mover4(robot);
-               robot.turnLeft();
-               mover3(robot);//cambia
-                         
-                           
-               sacarTemporalIzquierda(robot);
-               mover3(robot);//cambia
-               girarDerecha(robot);
-               mover3(robot);
-               robot.putThing();
-               girarEspalda(robot);
-               mover3(robot);
-               robot.turnLeft();
-               mover2(robot);//cambia
-               sacarTemporalIzquierda(robot);
-               mover2(robot);//cambia
-               girarDerecha(robot);
-               mover2(robot);
-               robot.putThing();
-               girarEspalda(robot);               
-               mover2(robot); 
-               robot.turnLeft();
-               mover6(robot);//cambia
-               girarEspalda(robot);                            
-                   
-                   
-               
-               }else if(robot.canPickThing()==false){
-                     robot.move();
-                           if(robot.canPickThing()){
-                           robot.pickThing();
-                           girarEspalda(robot);
-                           mover2(robot);
-                           robot.turnLeft();
-                           mover2(robot);  //cambia
-                           ponerTemporalIzquierda(robot);
-                           mover2(robot);//cambia
-                           girarDerecha(robot);
-                           mover3(robot);
-                           robot.pickThing();
-                           girarEspalda(robot);    
-                           mover3(robot);
-                           robot.turnLeft();
-                           mover3(robot);//cambia
-                           ponerTemporalIzquierda(robot);
-                           mover3(robot);//cambia
-                           girarDerecha(robot);
-                           mover4(robot);
-                           robot.pickThing();
-                           girarEspalda(robot);
-                           mover4(robot);
-                           robot.turnLeft();
-                           mover7(robot);//cambia
-                           robot.putThing();
-                           girarEspalda(robot);
-                           mover4(robot);
-                           sacarTemporalDerecha(robot);
-                           mover3(robot);//cambia
-                           girarDerecha(robot);
-                           mover4(robot);
-                           robot.putThing();
-                           girarEspalda(robot);
-                           mover4(robot);
-                           robot.turnLeft();
-                           mover2(robot);//cambia
-                           sacarTemporalIzquierda(robot);
-                           mover2(robot);//cambia
-                           girarDerecha(robot);
-                           mover3(robot);
-                           robot.putThing();
-                           girarEspalda(robot);               
-                           mover3(robot); 
-                           robot.turnLeft();
-                           mover6(robot);//cambia
-                           girarEspalda(robot);                            
-
-
-               
-               }else if(robot.canPickThing()==false){
-                   robot.move();
-                  if(robot.canPickThing()){
-                       robot.pickThing();
-                   girarEspalda(robot);
-                   mover3(robot);
-                   robot.turnLeft();
-                   mover2(robot);//cambia  
-                 ponerTemporalIzquierda(robot);
-                  mover2(robot);//cambia
-                   girarDerecha(robot);
-                   mover4(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover4(robot);
-                    robot.turnLeft();
-                  mover7(robot);//cambia
-                   robot.putThing();
-                    girarEspalda(robot);
-                   mover5(robot);
-                   sacarTemporalDerecha(robot);
-                   mover2(robot);//cambia
-                   girarDerecha(robot);
-                   mover4(robot);
-                   robot.putThing();
-                   girarEspalda(robot);
-                   mover4(robot);
-                   robot.turnLeft();
-                   mover6(robot);//cambia
-                   girarEspalda(robot);
-                       
-                       
-                 }
-               else{
-              robot.move();
-                
-              
-               robot.pickThing();
-               girarEspalda(robot);
-               mover4(robot);
-               robot.turnLeft();
-               mover7(robot);//cambia
-               robot.putThing();
-               girarEspalda(robot);
-               robot.move();
-                   }
-             
-               }
-                   
-                   
-                   
-               }
-         
-         
-         
-         
-         
-         }else if(posicion==0){
-              mover6(robot);//CAMBIA
-               girarDerecha(robot);
-               robot.move();
-               if(robot.canPickThing()){
-                    robot.pickThing();
-                   girarEspalda(robot);
-                  robot.move();
-                   robot.turnLeft();
-                   mover2(robot);  //cambia
-                 ponerTemporalIzquierda(robot);
-                  mover2(robot);//cambia
-                   girarDerecha(robot);
-                   mover2(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);    
-                   mover2(robot);
-                   robot.turnLeft();
-                   mover3(robot);//cambia
-                   ponerTemporalIzquierda(robot);
-                   mover3(robot);//cambia
-                   girarDerecha(robot);
-                   mover3(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover3(robot);
-                   robot.turnLeft();
-                   mover4(robot);//cambia
-                   ponerTemporalIzquierda(robot);
-                   mover4(robot);//cambia
-                       
-                   girarDerecha(robot);
-                   mover4(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover4(robot);
-                   robot.turnLeft();
-                   mover5(robot);//cambia
-                   ponerTemporalIzquierda(robot);
-                   mover5(robot);//cambia
-                   girarDerecha(robot);
-                   mover5(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover5(robot);
-                   robot.turnLeft();
-                   mover7(robot);//cambia
-                   robot.putThing();
-                   girarEspalda(robot);
-                   mover2(robot);
-                   sacarTemporalDerecha(robot);
-                   mover5(robot);//cambia
-                   girarDerecha(robot);
-                   mover5(robot);
-                   robot.putThing();
-                   girarEspalda(robot);
-                   mover5(robot);
-                   robot.turnLeft();
-                   
-                  mover4(robot);//CAMBIA
-                sacarTemporalIzquierda(robot);
-               mover4(robot);//cambia
-               girarDerecha(robot);
-               mover4(robot);
-               robot.putThing();
-               girarEspalda(robot);
-                mover4(robot);
-               robot.turnLeft();
-               mover3(robot);//cambia
-                         
-                           
-               sacarTemporalIzquierda(robot);
-               mover3(robot);//cambia FALLO EN SECCION 1
-               girarDerecha(robot);
-               mover3(robot);
-               robot.putThing();
-               girarEspalda(robot);
-               mover3(robot);
-               robot.turnLeft();
-               mover2(robot);//cambia
-               sacarTemporalIzquierda(robot);
-               mover2(robot);//cambia
-               girarDerecha(robot);
-               mover2(robot);
-               robot.putThing();
-               girarEspalda(robot);               
-               mover2(robot); 
-               robot.turnLeft();
-               mover6(robot);//cambia
-               girarEspalda(robot);                            
-                   
-                   
-               
-               }else if(robot.canPickThing()==false){
-                 robot.move();
-               if(robot.canPickThing()){
-                    robot.pickThing();
-                   girarEspalda(robot);
-                  mover2(robot);
-                   robot.turnLeft();
-                   mover2(robot);  //cambia
-                 ponerTemporalIzquierda(robot);
-                  mover2(robot);//cambia
-                   girarDerecha(robot);
-                   mover3(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);    
-                   mover3(robot);
-                   robot.turnLeft();
-                   mover3(robot);//cambia
-                   ponerTemporalIzquierda(robot);
-                   mover3(robot);//cambia
-                   girarDerecha(robot);
-                   mover4(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover4(robot);
-                   robot.turnLeft();
-                   mover4(robot);//cambia
-                   ponerTemporalIzquierda(robot);
-                   mover4(robot);//cambia
-                       
-                   girarDerecha(robot);
-                   mover5(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover5(robot);
-                   robot.turnLeft();
-                   mover7(robot);//cambia
-                   robot.putThing();
-                   girarEspalda(robot);
-               mover3(robot);//cambia
-               sacarTemporalDerecha(robot);
-               mover4(robot);//cambia
-               girarDerecha(robot);
-               mover5(robot);
-               robot.putThing();
-               girarEspalda(robot);
-                mover5(robot);
-               robot.turnLeft();
-               mover3(robot);//cambia
-                         
-                           
-               sacarTemporalIzquierda(robot);
-               mover3(robot);//cambia
-               girarDerecha(robot);
-               mover4(robot);
-               robot.putThing();
-               girarEspalda(robot);
-               mover4(robot);
-               robot.turnLeft();
-               mover2(robot);//cambia
-               sacarTemporalIzquierda(robot);
-               mover2(robot);//cambia
-               girarDerecha(robot);
-               mover3(robot);
-               robot.putThing();
-               girarEspalda(robot);               
-               mover3(robot); 
-               robot.turnLeft();
-               mover6(robot);//cambia
-               girarEspalda(robot);                            
-                   
-                   
-               
-               }else if(robot.canPickThing()==false){
-                     robot.move();
-                           if(robot.canPickThing()){
-                           robot.pickThing();
-                           girarEspalda(robot);
-                           mover3(robot);
-                           robot.turnLeft();
-                           mover2(robot);  //cambia
-                           ponerTemporalIzquierda(robot);
-                           mover2(robot);//cambia
-                           girarDerecha(robot);
-                           mover4(robot);
-                           robot.pickThing();
-                           girarEspalda(robot);    
-                           mover4(robot);
-                           robot.turnLeft();
-                           mover3(robot);//cambia
-                           ponerTemporalIzquierda(robot);
-                           mover3(robot);//cambia
-                           girarDerecha(robot);
-                           mover5(robot);
-                           robot.pickThing();
-                           girarEspalda(robot);
-                           mover5(robot);
-                           robot.turnLeft();
-                           mover7(robot);//cambia
-                           robot.putThing();
-                           girarEspalda(robot);
-                           mover4(robot);
-                           sacarTemporalDerecha(robot);
-                           mover3(robot);//cambia
-                           girarDerecha(robot);
-                           mover5(robot);
-                           robot.putThing();
-                           girarEspalda(robot);
-                           mover5(robot);
-                           robot.turnLeft();
-                           mover2(robot);//cambia
-                           sacarTemporalIzquierda(robot);
-                           mover2(robot);//cambia
-                           girarDerecha(robot);
-                           mover4(robot);
-                           robot.putThing();
-                           girarEspalda(robot);               
-                           mover4(robot); 
-                           robot.turnLeft();
-                           mover6(robot);//cambia
-                           girarEspalda(robot);                            
-
-
-               
-               }else if(robot.canPickThing()==false){
-                   robot.move();
-                  if(robot.canPickThing()){
-                       robot.pickThing();
-                   girarEspalda(robot);
-                   mover4(robot);
-                   robot.turnLeft();
-                   mover2(robot);//cambia  
-                 ponerTemporalIzquierda(robot);
-                  mover2(robot);//cambia
-                   girarDerecha(robot);
-                   mover5(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover5(robot);
-                    robot.turnLeft();
-                  mover7(robot);//cambia
-                   robot.putThing();
-                    girarEspalda(robot);
-                   mover5(robot);//cambia
-                   sacarTemporalDerecha(robot);
-                   mover2(robot);//cambia
-                   girarDerecha(robot);
-                   mover5(robot);
-                   robot.putThing();
-                   girarEspalda(robot);
-                   mover5(robot);
-                   robot.turnLeft();
-                   mover6(robot);//cambia
-                   girarEspalda(robot);
-                       
-                       
-                 }
-               else{
-              robot.move();
-                
-              
-               robot.pickThing();
-               girarEspalda(robot);
-               mover5(robot);
-               robot.turnLeft();
-               mover7(robot);//cambia
-               robot.putThing();
-               girarEspalda(robot);
-               robot.move();
-                   }
-             
-               }
-                   
-                   
-                   
-               }
-                     
-                   
-                   
-               }
-         
-         } 
- 
- }else if(seccion==2){
-       if(posicion==4){
-               mover5(robot);
-               girarDerecha(robot);
-               robot.move();
-               robot.pickThing();
-               girarEspalda(robot);
-               robot.move();
-               robot.turnLeft();
-               mover6(robot);
-               robot.putThing();
-              girarEspalda(robot);
-               robot.move();
-     
-       }else if(posicion==3){
-             mover5(robot);
-               girarDerecha(robot);
-               robot.move();
-               if(robot.canPickThing()){
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   robot.move();
-                   robot.turnLeft();
-                  robot.move();
-                  ponerTemporalIzquierda(robot);                               
-                  robot.move();
-                   girarDerecha(robot);
-                   mover2(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover2(robot);
-                    robot.turnLeft();
-                  mover6(robot);
-                   robot.putThing();
-                    girarEspalda(robot);
-                   mover5(robot);
-                   sacarTemporalDerecha(robot);
-                   robot.move();
-                   girarDerecha(robot);
-                   mover2(robot);
-                   robot.putThing();
-                   girarEspalda(robot);
-                   mover2(robot);
-                   robot.turnLeft();
-                   mover5(robot);
-                   girarEspalda(robot);
-           
-           
-           
-       }else{
-                    robot.move();
-               robot.pickThing();
-               girarEspalda(robot);
-               mover2(robot);
-               robot.turnLeft();
-               mover6(robot);
-               robot.putThing();
-               girarEspalda(robot);
-               robot.move();
-                   
-               }
-       }else if(posicion==2){
-               mover5(robot);//cambia
-               girarDerecha(robot);
-               robot.move();
-               if(robot.canPickThing()){
-                    robot.pickThing();
-                   girarEspalda(robot);
-                  robot.move();
-                   robot.turnLeft();
-                   robot.move(); //cambia
-                 ponerTemporalIzquierda(robot);
-                  robot.move();//cambia
-                   girarDerecha(robot);
-                   mover2(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);    
-                   mover2(robot);
-                   robot.turnLeft();
-                   mover2(robot);//cambia
-                   ponerTemporalIzquierda(robot);
-                   mover2(robot);//cambia
-                   girarDerecha(robot);
-                   mover3(robot);
-                   robot.pickThing();
-               girarEspalda(robot);
-               mover3(robot);
-               robot.turnLeft();
-               mover6(robot);//cambia
-               robot.putThing();
-               girarEspalda(robot);
-               mover4(robot);
-               sacarTemporalDerecha(robot);
-               mover2(robot);//cambia
-               girarDerecha(robot);
-               mover3(robot);
-               robot.putThing();
-               girarEspalda(robot);
-               mover3(robot);
-               robot.turnLeft();
-              robot.move();//cambia
-               sacarTemporalIzquierda(robot);
-             robot.move();//cambia
-               girarDerecha(robot);
-               mover2(robot);
-               robot.putThing();
-               girarEspalda(robot);               
-               mover2(robot); 
-               robot.turnLeft();
-               mover5(robot);//cambia
-               girarEspalda(robot);                            
-                   
-                   
-               
-               }else if(robot.canPickThing()==false){
-                   robot.move();
-                  if(robot.canPickThing()){
-                       robot.pickThing();
-                   girarEspalda(robot);
-                   mover2(robot);
-                   robot.turnLeft();
-                   robot.move();//cambia
-                 ponerTemporalIzquierda(robot);
-                  robot.move();//cambia
-                   girarDerecha(robot);
-                   mover3(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover3(robot);
-                    robot.turnLeft();
-                  mover6(robot);//cambia
-                   robot.putThing();
-                    girarEspalda(robot);
-                   mover5(robot);
-                   sacarTemporalDerecha(robot);
-                   robot.move();//cambia
-                   girarDerecha(robot);
-                   mover3(robot);
-                   robot.putThing();
-                   girarEspalda(robot);
-                   mover3(robot);
-                   robot.turnLeft();
-                   mover5(robot);
-                   girarEspalda(robot);
-                       
-                       
-                 }
-               else{
-              robot.move();
-                
-              
-               robot.pickThing();
-               girarEspalda(robot);
-               mover3(robot);
-               robot.turnLeft();
-               mover6(robot);//cambia
-               robot.putThing();
-               girarEspalda(robot);
-               robot.move();
-                   }
-             
-               }
-       
-       }else if(posicion==1){
-        mover5(robot);//CAMBIA
-               girarDerecha(robot);
-               robot.move();
-               if(robot.canPickThing()){
-                    robot.pickThing();
-                   girarEspalda(robot);
-                  robot.move();
-                   robot.turnLeft();
-                   mover1(robot);  //cambia
-                 ponerTemporalIzquierda(robot);
-                  mover1(robot);//cambia
-                   girarDerecha(robot);
-                   mover2(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);    
-                   mover2(robot);
-                   robot.turnLeft();
-                   mover2(robot);//cambia
-                   ponerTemporalIzquierda(robot);
-                   mover2(robot);//cambia
-                   girarDerecha(robot);
-                   mover3(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover3(robot);
-                   robot.turnLeft();
-                   mover3(robot);//cambia
-                   ponerTemporalIzquierda(robot);
-                   mover3(robot);//cambia
-                       
-                   girarDerecha(robot);
-                   mover4(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover4(robot);
-                   robot.turnLeft();
-                   mover6(robot);//cambia
-                   robot.putThing();
-                   girarEspalda(robot);
-               mover3(robot);
-               sacarTemporalDerecha(robot);
-               mover3(robot);//cambia
-               girarDerecha(robot);
-               mover4(robot);
-               robot.putThing();
-               girarEspalda(robot);
-                mover4(robot);
-               robot.turnLeft();
-               mover2(robot);//cambia
-                         
-                           
-               sacarTemporalIzquierda(robot);
-               mover2(robot);//cambia
-               girarDerecha(robot);
-               mover3(robot);
-               robot.putThing();
-               girarEspalda(robot);
-               mover3(robot);
-               robot.turnLeft();
-               mover1(robot);//cambia
-               sacarTemporalIzquierda(robot);
-               mover1(robot);//cambia
-               girarDerecha(robot);
-               mover2(robot);
-               robot.putThing();
-               girarEspalda(robot);               
-               mover2(robot); 
-               robot.turnLeft();
-               mover5(robot);//cambia
-               girarEspalda(robot);                            
-                   
-                   
-               
-               }else if(robot.canPickThing()==false){
-                     robot.move();
-                           if(robot.canPickThing()){
-                           robot.pickThing();
-                           girarEspalda(robot);
-                           mover2(robot);
-                           robot.turnLeft();
-                           mover1(robot);  //cambia
-                           ponerTemporalIzquierda(robot);
-                           mover1(robot);//cambia
-                           girarDerecha(robot);
-                           mover3(robot);
-                           robot.pickThing();
-                           girarEspalda(robot);    
-                           mover3(robot);
-                           robot.turnLeft();
-                           mover2(robot);//cambia
-                           ponerTemporalIzquierda(robot);
-                           mover2(robot);//cambia
-                           girarDerecha(robot);
-                           mover4(robot);
-                           robot.pickThing();
-                           girarEspalda(robot);
-                           mover4(robot);
-                           robot.turnLeft();
-                           mover6(robot);//cambia
-                           robot.putThing();
-                           girarEspalda(robot);
-                           mover4(robot);
-                           sacarTemporalDerecha(robot);
-                           mover2(robot);//cambia
-                           girarDerecha(robot);
-                           mover4(robot);
-                           robot.putThing();
-                           girarEspalda(robot);
-                           mover4(robot);
-                           robot.turnLeft();
-                           mover1(robot);//cambia
-                           sacarTemporalIzquierda(robot);
-                           mover1(robot);//cambia
-                           girarDerecha(robot);
-                           mover3(robot);
-                           robot.putThing();
-                           girarEspalda(robot);               
-                           mover3(robot); 
-                           robot.turnLeft();
-                           mover5(robot);//cambia
-                           girarEspalda(robot);                            
-
-
-               
-               }else if(robot.canPickThing()==false){
-                   robot.move();
-                  if(robot.canPickThing()){
-                       robot.pickThing();
-                   girarEspalda(robot);
-                   mover3(robot);
-                   robot.turnLeft();
-                   mover1(robot);//cambia  
-                 ponerTemporalIzquierda(robot);
-                  mover1(robot);//cambia
-                   girarDerecha(robot);
-                   mover4(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover4(robot);
-                    robot.turnLeft();
-                  mover6(robot);//cambia
-                   robot.putThing();
-                    girarEspalda(robot);
-                   mover5(robot);
-                   sacarTemporalDerecha(robot);
-                   mover1(robot);//cambia
-                   girarDerecha(robot);
-                   mover4(robot);
-                   robot.putThing();
-                   girarEspalda(robot);
-                   mover4(robot);
-                   robot.turnLeft();
-                   mover5(robot);//cambia
-                   girarEspalda(robot);
-                       
-                       
-                 }
-               else{
-              robot.move();
-                
-              
-               robot.pickThing();
-               girarEspalda(robot);
-               mover4(robot);
-               robot.turnLeft();
-               mover6(robot);//cambia
-               robot.putThing();
-               girarEspalda(robot);
-               robot.move();
-                   }
-             
-               }
-                   
-                   
-                   
-               }
-         
-       
-       }else if(posicion==0){
-               mover5(robot);//CAMBIA
-               girarDerecha(robot);
-               robot.move();
-               if(robot.canPickThing()){
-                    robot.pickThing();
-                   girarEspalda(robot);
-                  robot.move();
-                   robot.turnLeft();
-                   mover1(robot);  //cambia
-                 ponerTemporalIzquierda(robot);
-                  mover1(robot);//cambia
-                   girarDerecha(robot);
-                   mover2(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);    
-                   mover2(robot);
-                   robot.turnLeft();
-                   mover2(robot);//cambia
-                   ponerTemporalIzquierda(robot);
-                   mover2(robot);//cambia
-                   girarDerecha(robot);
-                   mover3(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover3(robot);
-                   robot.turnLeft();
-                   mover3(robot);//cambia
-                   ponerTemporalIzquierda(robot);
-                   mover3(robot);//cambia
-                       
-                   girarDerecha(robot);
-                   mover4(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover4(robot);
-                   robot.turnLeft();
-                   mover4(robot);//cambia
-                   ponerTemporalIzquierda(robot);
-                   mover4(robot);//cambia
-                   girarDerecha(robot);
-                   mover5(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover5(robot);
-                   robot.turnLeft();
-                   mover6(robot);//cambia
-                   robot.putThing();
-                   girarEspalda(robot);
-                   mover2(robot);
-                   sacarTemporalDerecha(robot);
-                   mover4(robot);//cambia
-                   girarDerecha(robot);
-                   mover5(robot);
-                   robot.putThing();
-                   girarEspalda(robot);
-                   mover5(robot);
-                   robot.turnLeft();
-                   
-                  mover3(robot);
-                sacarTemporalIzquierda(robot);
-               mover3(robot);//cambia
-               girarDerecha(robot);
-               mover4(robot);
-               robot.putThing();
-               girarEspalda(robot);
-                mover4(robot);
-               robot.turnLeft();
-               mover2(robot);//cambia
-                         
-                           
-               sacarTemporalIzquierda(robot);
-               mover2(robot);//cambia
-               girarDerecha(robot);
-               mover3(robot);
-               robot.putThing();
-               girarEspalda(robot);
-               mover3(robot);
-               robot.turnLeft();
-               mover1(robot);//cambia
-               sacarTemporalIzquierda(robot);
-               mover1(robot);//cambia
-               girarDerecha(robot);
-               mover2(robot);
-               robot.putThing();
-               girarEspalda(robot);               
-               mover2(robot); 
-               robot.turnLeft();
-               mover5(robot);//cambia
-               girarEspalda(robot);                            
-                   
-                   
-               
-               }else if(robot.canPickThing()==false){
-                 robot.move();
-               if(robot.canPickThing()){
-                    robot.pickThing();
-                   girarEspalda(robot);
-                  mover2(robot);
-                   robot.turnLeft();
-                   mover1(robot);  //cambia
-                 ponerTemporalIzquierda(robot);
-                  mover1(robot);//cambia
-                   girarDerecha(robot);
-                   mover3(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);    
-                   mover3(robot);
-                   robot.turnLeft();
-                   mover2(robot);//cambia
-                   ponerTemporalIzquierda(robot);
-                   mover2(robot);//cambia
-                   girarDerecha(robot);
-                   mover4(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover4(robot);
-                   robot.turnLeft();
-                   mover3(robot);//cambia
-                   ponerTemporalIzquierda(robot);
-                   mover3(robot);//cambia
-                       
-                   girarDerecha(robot);
-                   mover5(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover5(robot);
-                   robot.turnLeft();
-                   mover6(robot);//cambia
-                   robot.putThing();
-                   girarEspalda(robot);
-               mover3(robot);//cambia
-               sacarTemporalDerecha(robot);
-               mover3(robot);//cambia
-               girarDerecha(robot);
-               mover5(robot);
-               robot.putThing();
-               girarEspalda(robot);
-                mover5(robot);
-               robot.turnLeft();
-               mover2(robot);//cambia
-                         
-                           
-               sacarTemporalIzquierda(robot);
-               mover2(robot);//cambia
-               girarDerecha(robot);
-               mover4(robot);
-               robot.putThing();
-               girarEspalda(robot);
-               mover4(robot);
-               robot.turnLeft();
-               mover1(robot);//cambia
-               sacarTemporalIzquierda(robot);
-               mover1(robot);//cambia
-               girarDerecha(robot);
-               mover3(robot);
-               robot.putThing();
-               girarEspalda(robot);               
-               mover3(robot); 
-               robot.turnLeft();
-               mover5(robot);//cambia
-               girarEspalda(robot);                            
-                   
-                   
-               
-               }else if(robot.canPickThing()==false){
-                     robot.move();
-                           if(robot.canPickThing()){
-                           robot.pickThing();
-                           girarEspalda(robot);
-                           mover3(robot);
-                           robot.turnLeft();
-                           mover1(robot);  //cambia
-                           ponerTemporalIzquierda(robot);
-                           mover1(robot);//cambia
-                           girarDerecha(robot);
-                           mover4(robot);
-                           robot.pickThing();
-                           girarEspalda(robot);    
-                           mover4(robot);
-                           robot.turnLeft();
-                           mover2(robot);//cambia
-                           ponerTemporalIzquierda(robot);
-                           mover2(robot);//cambia
-                           girarDerecha(robot);
-                           mover5(robot);
-                           robot.pickThing();
-                           girarEspalda(robot);
-                           mover5(robot);
-                           robot.turnLeft();
-                           mover6(robot);//cambia
-                           robot.putThing();
-                           girarEspalda(robot);
-                           mover4(robot);
-                           sacarTemporalDerecha(robot);
-                           mover2(robot);//cambia
-                           girarDerecha(robot);
-                           mover5(robot);
-                           robot.putThing();
-                           girarEspalda(robot);
-                           mover5(robot);
-                           robot.turnLeft();
-                           mover1(robot);//cambia
-                           sacarTemporalIzquierda(robot);
-                           mover1(robot);//cambia
-                           girarDerecha(robot);
-                           mover4(robot);
-                           robot.putThing();
-                           girarEspalda(robot);               
-                           mover4(robot); 
-                           robot.turnLeft();
-                           mover5(robot);//cambia
-                           girarEspalda(robot);                            
-
-
-               
-               }else if(robot.canPickThing()==false){
-                   robot.move();
-                  if(robot.canPickThing()){
-                       robot.pickThing();
-                   girarEspalda(robot);
-                   mover4(robot);
-                   robot.turnLeft();
-                   mover1(robot);//cambia  
-                 ponerTemporalIzquierda(robot);
-                  mover1(robot);//cambia
-                   girarDerecha(robot);
-                   mover5(robot);
-                   robot.pickThing();
-                   girarEspalda(robot);
-                   mover5(robot);
-                    robot.turnLeft();
-                  mover6(robot);//cambia
-                   robot.putThing();
-                    girarEspalda(robot);
-                   mover5(robot);//cambia
-                   sacarTemporalDerecha(robot);
-                   mover1(robot);//cambia
-                   girarDerecha(robot);
-                   mover5(robot);
-                   robot.putThing();
-                   girarEspalda(robot);
-                   mover5(robot);
-                   robot.turnLeft();
-                   mover5(robot);//cambia
-                   girarEspalda(robot);
-                       
-                       
-                 }
-               else{
-              robot.move();
-                
-              
-               robot.pickThing();
-               girarEspalda(robot);
-               mover5(robot);
-               robot.turnLeft();
-               mover6(robot);//cambia
-               robot.putThing();
-               girarEspalda(robot);
-               robot.move();
-                   }
-             
-               }
-                   
-                   
-                   
-               }
-                     
-                   
-                   
-               }
-         
-       
-       }
- 
- }
-    
-    
- }
- 
-    
-    
-
+    public static void regresarDeZT (Robot conductor, Vehiculo vehiculo){
+        int seccion = vehiculo.getSeccion().getNumero();
+        int num_vehiculo = 0;
+        for (int i=0;i< 5; i++){
+            if (vehiculo == vehiculo.getSeccion().getVehiculos()[i] ){
+                num_vehiculo = i+1;
+                break;
+            }
+        }
+        int disponibilidad = vehiculo.getSeccion().getDisponibilidad();
+        int u = 7 - seccion;
+        switch (num_vehiculo){
+            case 1:
+                switch (disponibilidad){
+                    case 0:
+                        conductor.pickThing();
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 5);
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 5);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u-1);
+                        conductor.turnLeft();
+                        conductor.move();
+                        girarEspalda(conductor);
+                        
+                        conductor.pickThing();
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u-1);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 4);
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 4);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u-2);
+                        conductor.turnLeft();
+                        conductor.move();
+                        girarEspalda(conductor);
+                        
+                        conductor.pickThing();
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u-2);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 3);
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 3);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u-3);
+                        conductor.turnLeft();
+                        conductor.move();
+                        girarEspalda(conductor);
+                        
+                        conductor.pickThing();
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u-3);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 2);
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 2);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u);
+                        conductor.turnLeft();
+                        conductor.move();
+                        girarEspalda(conductor);
+                        break;
+                    case 1:
+                        conductor.move();
+                        girarDerecha(conductor);
+                        conductor.move();
+                        girarDerecha(conductor);
+                        conductor.move();
+                        girarEspalda(conductor);
+                        
+                        conductor.pickThing();
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u-1);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 5);
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 5);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u-2);
+                        conductor.turnLeft();
+                        conductor.move();
+                        girarEspalda(conductor);
+                        
+                        conductor.pickThing();
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u-2);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 4);
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 4);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u-3);
+                        conductor.turnLeft();
+                        conductor.move();
+                        girarEspalda(conductor);
+                        
+                        conductor.pickThing();
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u-3);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 3);
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 3);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u);
+                        conductor.turnLeft();
+                        conductor.move();
+                        girarEspalda(conductor);
+                        break;
+                    case 2:
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 2);
+                        girarDerecha(conductor);
+                        conductor.move();
+                        girarEspalda(conductor);
+                        
+                        conductor.pickThing();
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u-2);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 5);
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 5);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u-3);
+                        conductor.turnLeft();
+                        conductor.move();
+                        girarEspalda(conductor);
+                        
+                        conductor.pickThing();
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u-3);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 4);
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 4);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u);
+                        conductor.turnLeft();
+                        conductor.move();
+                        girarEspalda(conductor);
+                        break;
+                    case 3:
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 3);
+                        girarDerecha(conductor);
+                        conductor.move();
+                        girarEspalda(conductor);
+                        
+                        conductor.pickThing();
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u-3);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 5);
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 5);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u);
+                        conductor.turnLeft();
+                        conductor.move();
+                        girarEspalda(conductor);
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 2:
+                switch (disponibilidad){
+                    case 0:
+                        conductor.move();
+                        girarDerecha(conductor);
+                        conductor.move();
+                        girarDerecha(conductor);
+                        conductor.move();
+                        girarEspalda(conductor);
+                        
+                        conductor.pickThing();
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u-1);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 4);
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 4);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u-2);
+                        conductor.turnLeft();
+                        conductor.move();
+                        girarEspalda(conductor);
+                        
+                        conductor.pickThing();
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u-2);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 3);
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 3);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u-3);
+                        conductor.turnLeft();
+                        conductor.move();
+                        girarEspalda(conductor);
+                        
+                        conductor.pickThing();
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u-3);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 2);
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 2);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u);
+                        conductor.turnLeft();
+                        conductor.move();
+                        girarEspalda(conductor);
+                        break;
+                    case 1:
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 2);
+                        girarDerecha(conductor);
+                        conductor.move();
+                        girarEspalda(conductor);
+                        
+                        conductor.pickThing();
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u-2);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 4);
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 4);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u-3);
+                        conductor.turnLeft();
+                        conductor.move();
+                        girarEspalda(conductor);
+                        
+                        conductor.pickThing();
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u-3);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 3);
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 3);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u);
+                        conductor.turnLeft();
+                        conductor.move();
+                        girarEspalda(conductor);
+                        break;
+                    case 2:
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 3);
+                        girarDerecha(conductor);
+                        conductor.move();
+                        girarEspalda(conductor);
+                        
+                        conductor.pickThing();
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u-3);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 4);
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 4);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u);
+                        conductor.turnLeft();
+                        conductor.move();
+                        girarEspalda(conductor);
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 3:
+                switch (disponibilidad){
+                    case 0:
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 2);
+                        girarDerecha(conductor);
+                        conductor.move();
+                        girarEspalda(conductor);
+                        
+                        conductor.pickThing();
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u-2);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 3);
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 3);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u-3);
+                        conductor.turnLeft();
+                        conductor.move();
+                        girarEspalda(conductor);
+                        
+                        conductor.pickThing();
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u-3);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 2);
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 2);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u);
+                        conductor.turnLeft();
+                        conductor.move();
+                        girarEspalda(conductor);
+                        break;
+                    case 1:
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 3);
+                        girarDerecha(conductor);
+                        conductor.move();
+                        girarEspalda(conductor);
+                        
+                        conductor.pickThing();
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u-3);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 3);
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 3);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u);
+                        conductor.turnLeft();
+                        conductor.move();
+                        girarEspalda(conductor);
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 4:
+                switch (disponibilidad){
+                    case 0:
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 3);
+                        girarDerecha(conductor);
+                        conductor.move();
+                        girarEspalda(conductor);
+                        
+                        conductor.pickThing();
+                        conductor.move();
+                        girarDerecha(conductor);
+                        moverNveces(conductor, u-3);
+                        girarDerecha(conductor);
+                        moverNveces(conductor, 2);
+                        conductor.putThing();
+                        girarEspalda(conductor);
+                        moverNveces(conductor, 2);
+                        conductor.turnLeft();
+                        moverNveces(conductor, u);
+                        conductor.turnLeft();
+                        conductor.move();
+                        girarEspalda(conductor);
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            default:
+                break;
+        }
+    }
     
     public static void main(String[] args){
-//
-//    {         Parqueadero ny = new Parqueadero("Santarita");
-//
-           
-      // Set up the initial situation
+
       //Creando la estructura del parqueadero
    
-      City ny=new City();
-      for(int i=0;i<3;i++){
-       Wall c1 = new Wall(ny, 0,i, Direction.NORTH);
-       for(int j=0;j<5;j++){
-       Wall c2=  new Wall(ny, j,i,Direction.WEST);
-       Wall c3= new Wall(ny,j,i,Direction.EAST);
+        City ny = new City();
+        Seccion seccion1 = new Seccion(1);
+        Seccion seccion2 = new Seccion(2);
+        Seccion seccion3 = new Seccion(3);
+        Seccion[] secciones = {seccion1, seccion2, seccion3};
+        Parqueadero p = new Parqueadero("Parqueadero Santa Rita", ny);
+        p.setSecciones(secciones);
+        Robot conductor = new Robot (ny, 4, 6, Direction.SOUTH, 1);
+        for(int i=0;i<3;i++){
+            Wall c1 = new Wall(ny, 0,i, Direction.NORTH);
+            for(int j=0;j<5;j++){
+                Wall c2=  new Wall(ny, j,i,Direction.WEST);
+                Wall c3= new Wall(ny,j,i,Direction.EAST);
             }
-      }
-      for(int i=0;i<4;i++){
-       Wall c3=  new Wall(ny,4 ,i+3,Direction.NORTH);
-       Wall c4=  new Wall(ny,4 ,i+3,Direction.EAST);
-   }
-      for(int i=0;i<7;i++){
-       Wall c5=  new Wall(ny,5 ,i,Direction.SOUTH);
-      
-   }
-        Wall c1= new Wall(ny, 5,0, Direction.WEST);
-               
-
-            
-       Robot roboco=new Robot(ny, 5, 7, Direction.WEST,0);
-      
-         Parqueadero p= new Parqueadero("Parqueadero Santa Rita");
+        }
+        for(int i=0;i<4;i++){
+            Wall c3=  new Wall(ny,4 ,i+3,Direction.NORTH);
+            Wall c4=  new Wall(ny,4 ,i+3,Direction.EAST);
+        }
+        for(int i=0;i<7;i++){
+            Wall c5=  new Wall(ny,5 ,i,Direction.SOUTH);
+        }
+        Wall c1= new Wall(ny, 5,0, Direction.WEST);    
         Scanner in = new Scanner(System.in);
         //iniciar 
-        for(int i=0;i<3;i++){
-        p.agregarSeccion(i);
-        }
-        for(int i=1; i<16;i++){
-            int seccion=p.Determinanandoseccion();
-            p.agregarSeccionVehicularDeterminando(i, ny, 5, 7);
-            ingresarVehiculo(roboco,seccion);
-        }
         int continuar = 1, opcion = 0;
         do{
-            System.out.println(p.getNombre());
-            System.out.println("El parqueadero cuenta con las secciones 0, 1  y 2 ");
-            System.out.println("1. Agregar vehiculo");
+            System.out.println("Bienvenido a " + p.getNombre());
+            System.out.println("Tarifa: $55 por minuto");
+            System.out.println("1. Ingresar vehiculo");
             System.out.println("2. Sacar vehiculo");
-            System.out.println("3. Informacion seccion");
+            System.out.println("3. Mostrar vehículos de una seccion");
+            System.out.println("4. Mostrar ingresos");
+            System.out.println(" ");
             opcion = in.nextInt();
-            
-            if(opcion == 1){
-                  System.out.println("Ingrese los datos del vehiculo");
-                System.out.println("Placa");
-               int placa= in.nextInt();               
-               
-              int seccion=p.Determinanandoseccion();
-              boolean resultado=p.agregarSeccionVehicularDeterminando(placa, ny, 5, 7);
-              ingresarVehiculo(roboco,seccion);
-              
-                if(resultado == true){
-                    System.out.println("Se creo el auto ");
-                }else{
-                    System.out.println("El parqueadero esta completo");
-                }
-//               
-            }else if(opcion == 2){
-             
-             System.out.println("Ingrese la seccion donde esta el vehiculo(0,1,2)");
-                int seccion= in.nextInt();
-                 System.out.println("Ingrese la placa del vehiculo");
-                int placa= in.nextInt(); 
-               int posicion=p.posicionplacaplaca(seccion, placa);
-              System.out.println(p.posicionplacaplaca(seccion, placa));  
-                sacarVehiculo(seccion,posicion,roboco);
-                boolean resultado=p.eliminarVehiculoPlaca(seccion, placa);
-                   if(resultado == true){
-                    System.out.println("Se retiro apropiadamente el auto ");
-                }else{
-                    System.out.println("Problemas sacando el automovil");
-                }
-                                          
-                             
-                                
-        
-              
-           
-             }else if(opcion == 3){
-                 System.out.println("Ingrese el numero de la seccion");
-                 int numseccion= in.nextInt();
-                 System.out.println("Lista de vehiculos existentes en la seccion");
-                boolean resultado=p.informacionvehiculos(numseccion); 
-                 if(resultado=true){
-                     System.out.println("Fin de la lista");
-                 }else{
-                     System.out.println("Problemas en la impresion de las placas de la seccion");
-                 }
+            switch (opcion){
+                case 1:
+                    if (((p.getSecciones()[0].getDisponibilidad() != 0) || (p.getSecciones()[1].getDisponibilidad() != 0)) || (p.getSecciones()[2].getDisponibilidad() != 0)){
+                        System.out.println("Ingrese placa del vehiculo: ");
+                        String placa = in.next();
+                        System.out.println("Ingrese horas del dia ya transcurridas (0 a 23): ");
+                        int horas = in.nextInt();
+                        System.out.println("Ingrese minutos transcurridos sin contar las horas ingresadas previamente (0 a 59): ");
+                        int minutos = in.nextInt();
+                        System.out.println(" ");
+                        int horaIngreso = (horas*60) + minutos;
+                        Seccion menos_ocupada = p.seccionMenosOcupada();
+                        Vehiculo vai = new Vehiculo(placa, horaIngreso, menos_ocupada);
+                        ubicarVehiculo(conductor, vai);
+                        System.out.println("El vehiculo de placa " + vai.getPlaca() + " quedo ubicado en la seccion " + vai.getSeccion().getNumero());
+                        break;
+                    }else{
+                        System.out.println("Actualmente no hay espacio para ingresar vehiculos en el parqueadero");
+                        break;
+                    }
+                case 2:
+                    System.out.println("Ingrese seccion donde se encuentra el vehiculo (1, 2 o 3): ");
+                    int numseccion = in.nextInt();
+                    if ((numseccion < 1)||(numseccion > 3)){
+                        System.out.println("Seccion no existente");
+                        break;
+                    }
+                    Seccion seccion = null;
+                    for(int i = 0; i < 3; i++){
+                        if(numseccion == p.getSecciones()[i].getNumero()){
+                                seccion = p.getSecciones()[i];
+                        }
+                    }
+                    if (seccion.getDisponibilidad() == 5){
+                        System.out.println("La seccion " + numseccion + " no tiene vehiculos actualmente");
+                        break;
+                    }
+                    seccion.mostrarVehiculos();
+                    System.out.println("Ingrese placa del vehiculo que desea sacar: ");
+                    String placa = in.next();
+                    Vehiculo vas = null;
+                    for(int i = 0; i < (5 - seccion.getDisponibilidad()); i++){
+                        if(seccion.getVehiculos()[i].getPlaca().equals(placa)){
+                                vas = seccion.getVehiculos()[i];
+                        }
+                    }
+                    if (vas == null){
+                        System.out.println("Placa " + placa + " no coincide con ningun vehiculo de la seccion " + seccion.getNumero());
+                        break;
+                    }
+                    System.out.println("Ingrese horas del dia ya transcurridas (0 a 23): ");
+                        int horas = in.nextInt();
+                        System.out.println("Ingrese minutos transcurridos sin contar las horas ingresadas previamente (0 a 59): ");
+                        int minutos = in.nextInt();
+                        int horaSalida = (horas*60) + minutos;
+                        vas.setHoraSalida(horaSalida);
+                        p.registrarPago(vas);
+                        ubicarEnZT(conductor, vas);
+                        sacarVehiculo(conductor, vas);
+                        regresarDeZT(conductor, vas);
+                        p.eliminarVehiculo(vas);
+                    break;
+                case 3:
+                    System.out.println("Ingrese numero de seccion (1, 2 o  3): ");
+                    int num_seccion = in.nextInt();
+                    if ((num_seccion > 0)||(num_seccion < 4)){
+                        Seccion seccion_ = null;
+                        for(int i = 0; i < 3; i++){
+                            if(num_seccion == p.getSecciones()[i].getNumero()){
+                                seccion_ = p.getSecciones()[i];
+                                break;
+                            }
+                        }
+                        seccion_.mostrarVehiculos();
+                        break;
+                    }else{
+                        System.out.println("Seccion no existente");
+                        break;
+                    }    
+                case 4:
+                    System.out.println("Total de ingresos obtenidos durante la jornada: $" + p.getIngresos());
+                    break;
             }
-            else {
-                System.out.println("Opcion invalida");
-            }
-        
         }while(continuar == 1);
     
     }
-   
-   
-
-
-    
    }
 

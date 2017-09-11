@@ -11,37 +11,60 @@ import java.util.*;
  *
  * @author Nicolas Garcia y Juan David Jaime
  */
-public class Vehiculo extends Thing {
-    private int placa;
-//    private int  horaactual;
-//    Calendar calendario = Calendar.getInstance();
-// int hora =calendario.get(Calendar.HOUR_OF_DAY);
-//int minutos = calendario.get(Calendar.MINUTE);
-
-
-
-
+public class Vehiculo {
     
-  
+    private String placa;
+    private int horaIngreso;
+    private int horaSalida;
+    private Seccion seccion;
+    private Thing thing;
 
-    public Vehiculo(int placa, City city, int i, int i1) {
-        super(city, i, i1);
+    public void setPlaca(String placa) {
         this.placa = placa;
     }
-
-   
-
-
-
     
-    public int getPlaca() {
+    public void setHoraIngreso(int horaIngreso) {
+        this.horaIngreso = horaIngreso;
+    }
+
+    public void setHoraSalida(int horaSalida) {
+        this.horaSalida = horaSalida;
+    }
+
+    public void setSeccion(Seccion seccion) {
+        this.seccion = seccion;
+    }
+
+    public void setThing(Thing thing) {
+        this.thing = thing;
+    }
+
+    public String getPlaca() {
         return placa;
     }
-
-    public void setPlaca(int placa) {
-        this.placa = placa;
+    
+    public int getHoraIngreso() {
+        return horaIngreso;
     }
 
+    public int getHoraSalida() {
+        return horaSalida;
+    }
+
+    public Seccion getSeccion() {
+        return seccion;
+    }
+
+    public Thing getThing() {
+        return thing;
+    }
     
+    public Vehiculo(String placa, int horaIngreso, Seccion seccion) {
+        this.placa = placa;
+        this.horaIngreso = horaIngreso;
+        this.horaSalida = 0;
+        this.seccion = seccion;
+        this.thing = new Thing (seccion.getParqueadero().getCiudad(),5,6);
+    }
     
 }
