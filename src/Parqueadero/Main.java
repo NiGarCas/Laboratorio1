@@ -23,6 +23,10 @@ public class Main {
      robot.turnLeft();
         
     }
+    public static void mover1(Robot robot){
+        robot.move();
+        
+    }
     public static void mover2(Robot robot){
         robot.move();
          robot.move();
@@ -52,13 +56,47 @@ public class Main {
              robot.move();
     }
     }
-           public static void mover8(Robot robot){
+    public static void mover8(Robot robot){
            for(int i=0;i<8;i++){
              robot.move();
               }
            }
     
-    
+          public static void sacarTemporalIzquierda(Robot robot){
+              robot.turnLeft();
+              robot.move();
+              robot.pickThing();
+              girarEspalda(robot);
+              robot.move();
+              girarDerecha(robot);
+          }
+         public static void sacarTemporalDerecha(Robot robot){
+           girarDerecha(robot);
+           robot.move();
+           robot.pickThing();
+           girarEspalda(robot);
+           robot.move();
+           girarDerecha(robot);            
+               
+         }
+          public static void ponerTemporalDerecha(Robot robot){
+           girarDerecha(robot);
+           robot.move();
+           robot.putThing();
+           girarEspalda(robot);
+           robot.move();
+           girarDerecha(robot);            
+               
+         }
+            public static void ponerTemporalIzquierda(Robot robot){
+           robot.turnLeft();
+           robot.move();
+           robot.putThing();
+           girarEspalda(robot);
+           robot.move();
+           girarDerecha(robot);            
+               
+         }
     
     
     
@@ -165,9 +203,7 @@ public class Main {
  public static void sacarVehiculo(int seccion,int posicion,Robot robot){
      if(seccion==0){
          if(posicion==4){
-               for(int i=0;i<7;i++){
-                robot.move();
-               }
+               mover7(robot);
                girarDerecha(robot);
                robot.move();
                robot.pickThing();
@@ -196,18 +232,14 @@ public class Main {
                    girarEspalda(robot);
                    robot.move();
                    girarDerecha(robot);
-                   for(int i=0; i<3;i++){
-                       robot.move();
-                   }
+                  mover3(robot);
                    girarDerecha(robot);
                    mover2(robot);
                    robot.pickThing();
                    girarEspalda(robot);
                    mover2(robot);
                     robot.turnLeft();
-                   for(int i=0;i<8;i++){
-                    robot.move();
-                   }
+                  mover8(robot);
                    robot.putThing();
                     girarEspalda(robot);
                    mover5(robot);
@@ -245,13 +277,1802 @@ public class Main {
                
                    
              
-         }
-     }
+         }else if(posicion==2){
+              mover7(robot);
+               girarDerecha(robot);
+               robot.move();
+               if(robot.canPickThing()){
+                    robot.pickThing();
+                   girarEspalda(robot);
+                  robot.move();
+                   robot.turnLeft();
+                   mover3(robot);  //cambia
+                 ponerTemporalIzquierda(robot);
+                  mover3(robot);//cambia
+                   girarDerecha(robot);
+                   mover2(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);    
+                   mover2(robot);
+                   robot.turnLeft();
+                   mover4(robot);//cambia
+                   ponerTemporalIzquierda(robot);
+                   mover4(robot);//cambia
+                   girarDerecha(robot);
+                   mover3(robot);
+                   robot.pickThing();
+               girarEspalda(robot);
+               mover3(robot);
+               robot.turnLeft();
+               mover8(robot);//cambia
+               robot.putThing();
+               girarEspalda(robot);
+               mover4(robot);
+               sacarTemporalDerecha(robot);
+               mover4(robot);
+               girarDerecha(robot);
+               mover3(robot);
+               robot.putThing();
+               girarEspalda(robot);
+               mover3(robot);
+               robot.turnLeft();
+               mover3(robot);//cambia
+               sacarTemporalIzquierda(robot);
+               mover3(robot);//cambia
+               girarDerecha(robot);
+               mover2(robot);
+               robot.putThing();
+               girarEspalda(robot);               
+               mover2(robot); 
+               robot.turnLeft();
+               mover7(robot);//cambia
+               girarEspalda(robot);                            
+                   
+                   
+               
+               }else if(robot.canPickThing()==false){
+                   robot.move();
+                  if(robot.canPickThing()){
+                       robot.pickThing();
+                   girarEspalda(robot);
+                   mover2(robot);
+                   robot.turnLeft();
+                   mover3(robot);  
+                 ponerTemporalIzquierda(robot);
+                  mover3(robot);
+                   girarDerecha(robot);
+                   mover3(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover3(robot);
+                    robot.turnLeft();
+                  mover8(robot);
+                   robot.putThing();
+                    girarEspalda(robot);
+                   mover5(robot);
+                   sacarTemporalDerecha(robot);
+                   mover3(robot);
+                   girarDerecha(robot);
+                   mover3(robot);
+                   robot.putThing();
+                   girarEspalda(robot);
+                   mover3(robot);
+                   robot.turnLeft();
+                   mover7(robot);
+                   girarEspalda(robot);
+                       
+                       
+                 }
+               else{
+              robot.move();
+                
+              
+               robot.pickThing();
+               girarEspalda(robot);
+               mover3(robot);
+               robot.turnLeft();
+               mover8(robot);
+               robot.putThing();
+               girarEspalda(robot);
+               robot.move();
+                   }
+             
+               }
+         }else if(posicion==1){
+              mover7(robot);
+               girarDerecha(robot);
+               robot.move();
+               if(robot.canPickThing()){
+                    robot.pickThing();
+                   girarEspalda(robot);
+                  robot.move();
+                   robot.turnLeft();
+                   mover3(robot);  //cambia
+                 ponerTemporalIzquierda(robot);
+                  mover3(robot);//cambia
+                   girarDerecha(robot);
+                   mover2(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);    
+                   mover2(robot);
+                   robot.turnLeft();
+                   mover4(robot);//cambia
+                   ponerTemporalIzquierda(robot);
+                   mover4(robot);//cambia
+                   girarDerecha(robot);
+                   mover3(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover3(robot);
+                   robot.turnLeft();
+                   mover5(robot);//cambia
+                   ponerTemporalIzquierda(robot);
+                   mover5(robot);//cambia
+                       
+                   girarDerecha(robot);
+                   mover4(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover4(robot);
+                   robot.turnLeft();
+                   mover8(robot);//cambia
+                   robot.putThing();
+                   girarEspalda(robot);
+               mover3(robot);
+               sacarTemporalDerecha(robot);
+               mover5(robot);//cambia
+               girarDerecha(robot);
+               mover4(robot);
+               robot.putThing();
+               girarEspalda(robot);
+                mover4(robot);
+               robot.turnLeft();
+               mover4(robot);//cambia
+                         
+                           
+               sacarTemporalIzquierda(robot);
+               mover4(robot);
+               girarDerecha(robot);
+               mover3(robot);
+               robot.putThing();
+               girarEspalda(robot);
+               mover3(robot);
+               robot.turnLeft();
+               mover3(robot);//cambia
+               sacarTemporalIzquierda(robot);
+               mover3(robot);//cambia
+               girarDerecha(robot);
+               mover2(robot);
+               robot.putThing();
+               girarEspalda(robot);               
+               mover2(robot); 
+               robot.turnLeft();
+               mover7(robot);//cambia
+               girarEspalda(robot);                            
+                   
+                   
+               
+               }else if(robot.canPickThing()==false){
+                     robot.move();
+                           if(robot.canPickThing()){
+                           robot.pickThing();
+                           girarEspalda(robot);
+                           mover2(robot);
+                           robot.turnLeft();
+                           mover3(robot);  //cambia
+                           ponerTemporalIzquierda(robot);
+                           mover3(robot);//cambia
+                           girarDerecha(robot);
+                           mover3(robot);
+                           robot.pickThing();
+                           girarEspalda(robot);    
+                           mover3(robot);
+                           robot.turnLeft();
+                           mover4(robot);//cambia
+                           ponerTemporalIzquierda(robot);
+                           mover4(robot);//cambia
+                           girarDerecha(robot);
+                           mover4(robot);
+                           robot.pickThing();
+                           girarEspalda(robot);
+                           mover4(robot);
+                           robot.turnLeft();
+                           mover8(robot);//cambia
+                           robot.putThing();
+                           girarEspalda(robot);
+                           mover4(robot);
+                           sacarTemporalDerecha(robot);
+                           mover4(robot);//cambia
+                           girarDerecha(robot);
+                           mover4(robot);
+                           robot.putThing();
+                           girarEspalda(robot);
+                           mover4(robot);
+                           robot.turnLeft();
+                           mover3(robot);//cambia
+                           sacarTemporalIzquierda(robot);
+                           mover3(robot);//cambia
+                           girarDerecha(robot);
+                           mover3(robot);
+                           robot.putThing();
+                           girarEspalda(robot);               
+                           mover3(robot); 
+                           robot.turnLeft();
+                           mover7(robot);//cambia
+                           girarEspalda(robot);                            
+
+
+               
+               }else if(robot.canPickThing()==false){
+                   robot.move();
+                  if(robot.canPickThing()){
+                       robot.pickThing();
+                   girarEspalda(robot);
+                   mover3(robot);
+                   robot.turnLeft();
+                   mover3(robot);//cambia  
+                 ponerTemporalIzquierda(robot);
+                  mover3(robot);//cambia
+                   girarDerecha(robot);
+                   mover4(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover4(robot);
+                    robot.turnLeft();
+                  mover8(robot);//cambia
+                   robot.putThing();
+                    girarEspalda(robot);
+                   mover5(robot);//cambia
+                   sacarTemporalDerecha(robot);
+                   mover3(robot);//cambia
+                   girarDerecha(robot);
+                   mover4(robot);
+                   robot.putThing();
+                   girarEspalda(robot);
+                   mover4(robot);
+                   robot.turnLeft();
+                   mover7(robot);//cambia
+                   girarEspalda(robot);
+                       
+                       
+                 }
+               else{
+              robot.move();
+                
+              
+               robot.pickThing();
+               girarEspalda(robot);
+               mover4(robot);
+               robot.turnLeft();
+               mover8(robot);//cambia
+               robot.putThing();
+               girarEspalda(robot);
+               robot.move();
+                   }
+             
+               }
+                   
+                   
+                   
+               }
+    }else if(posicion==0){
+         mover7(robot);//CAMBIA
+               girarDerecha(robot);
+               robot.move();
+               if(robot.canPickThing()){
+                    robot.pickThing();
+                   girarEspalda(robot);
+                  robot.move();
+                   robot.turnLeft();
+                   mover3(robot);  //cambia
+                 ponerTemporalIzquierda(robot);
+                  mover3(robot);//cambia
+                   girarDerecha(robot);
+                   mover2(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);    
+                   mover2(robot);
+                   robot.turnLeft();
+                   mover4(robot);//cambia
+                   ponerTemporalIzquierda(robot);
+                   mover4(robot);//cambia
+                   girarDerecha(robot);
+                   mover3(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover3(robot);
+                   robot.turnLeft();
+                   mover5(robot);//cambia
+                   ponerTemporalIzquierda(robot);
+                   mover5(robot);//cambia
+                       
+                   girarDerecha(robot);
+                   mover4(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover4(robot);
+                   robot.turnLeft();
+                   mover6(robot);//cambia
+                   ponerTemporalIzquierda(robot);
+                   mover6(robot);//cambia
+                   girarDerecha(robot);
+                   mover5(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover5(robot);
+                   robot.turnLeft();
+                   mover8(robot);//cambia
+                   robot.putThing();
+                   girarEspalda(robot);
+                   mover2(robot);
+                   sacarTemporalDerecha(robot);
+                   mover6(robot);//cambia
+                   girarDerecha(robot);
+                   mover5(robot);
+                   robot.putThing();
+                   girarEspalda(robot);
+                   mover5(robot);
+                   robot.turnLeft();
+                   
+                  mover5(robot);//CAMBIA
+                sacarTemporalIzquierda(robot);
+               mover5(robot);//cambia
+               girarDerecha(robot);
+               mover4(robot);
+               robot.putThing();
+               girarEspalda(robot);
+                mover4(robot);
+               robot.turnLeft();
+               mover4(robot);//cambia
+                         
+                           
+               sacarTemporalIzquierda(robot);
+               mover4(robot);//cambia FALLO EN SECCION 1
+               girarDerecha(robot);
+               mover3(robot);
+               robot.putThing();
+               girarEspalda(robot);
+               mover3(robot);
+               robot.turnLeft();
+               mover3(robot);//cambia
+               sacarTemporalIzquierda(robot);
+               mover3(robot);//cambia
+               girarDerecha(robot);
+               mover2(robot);
+               robot.putThing();
+               girarEspalda(robot);               
+               mover2(robot); 
+               robot.turnLeft();
+               mover7(robot);//cambia
+               girarEspalda(robot);                            
+                   
+                   
+               
+               }else if(robot.canPickThing()==false){
+                 robot.move();
+               if(robot.canPickThing()){
+                    robot.pickThing();
+                   girarEspalda(robot);
+                  mover2(robot);
+                   robot.turnLeft();
+                   mover3(robot);  //cambia
+                 ponerTemporalIzquierda(robot);
+                  mover3(robot);//cambia
+                   girarDerecha(robot);
+                   mover3(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);    
+                   mover3(robot);
+                   robot.turnLeft();
+                   mover4(robot);//cambia
+                   ponerTemporalIzquierda(robot);
+                   mover4(robot);//cambia
+                   girarDerecha(robot);
+                   mover4(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover4(robot);
+                   robot.turnLeft();
+                   mover5(robot);//cambia
+                   ponerTemporalIzquierda(robot);
+                   mover5(robot);//cambia
+                       
+                   girarDerecha(robot);
+                   mover5(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover5(robot);
+                   robot.turnLeft();
+                   mover8(robot);//cambia
+                   robot.putThing();
+                   girarEspalda(robot);
+               mover3(robot);
+               sacarTemporalDerecha(robot);
+               mover5(robot);//cambia
+               girarDerecha(robot);
+               mover5(robot);
+               robot.putThing();
+               girarEspalda(robot);
+                mover5(robot);
+               robot.turnLeft();
+               mover4(robot);//cambia
+                         
+                           
+               sacarTemporalIzquierda(robot);
+               mover4(robot);//cambia
+               girarDerecha(robot);
+               mover4(robot);
+               robot.putThing();
+               girarEspalda(robot);
+               mover4(robot);
+               robot.turnLeft();
+               mover3(robot);//cambia
+               sacarTemporalIzquierda(robot);
+               mover3(robot);//cambia
+               girarDerecha(robot);
+               mover3(robot);
+               robot.putThing();
+               girarEspalda(robot);               
+               mover3(robot); 
+               robot.turnLeft();
+               mover7(robot);//cambia
+               girarEspalda(robot);                            
+                   
+                   
+               
+               }else if(robot.canPickThing()==false){
+                     robot.move();
+                           if(robot.canPickThing()){
+                           robot.pickThing();
+                           girarEspalda(robot);
+                           mover3(robot);
+                           robot.turnLeft();
+                           mover3(robot);  //cambia
+                           ponerTemporalIzquierda(robot);
+                           mover3(robot);//cambia
+                           girarDerecha(robot);
+                           mover4(robot);
+                           robot.pickThing();
+                           girarEspalda(robot);    
+                           mover4(robot);
+                           robot.turnLeft();
+                           mover4(robot);//cambia
+                           ponerTemporalIzquierda(robot);
+                           mover4(robot);//cambia
+                           girarDerecha(robot);
+                           mover5(robot);
+                           robot.pickThing();
+                           girarEspalda(robot);
+                           mover5(robot);
+                           robot.turnLeft();
+                           mover8(robot);//cambia
+                           robot.putThing();
+                           girarEspalda(robot);
+                           mover4(robot);
+                           sacarTemporalDerecha(robot);
+                           mover4(robot);//cambia
+                           girarDerecha(robot);
+                           mover5(robot);
+                           robot.putThing();
+                           girarEspalda(robot);
+                           mover5(robot);
+                           robot.turnLeft();
+                           mover3(robot);//cambia
+                           sacarTemporalIzquierda(robot);
+                           mover3(robot);//cambia
+                           girarDerecha(robot);
+                           mover4(robot);
+                           robot.putThing();
+                           girarEspalda(robot);               
+                           mover4(robot); 
+                           robot.turnLeft();
+                           mover7(robot);//cambia
+                           girarEspalda(robot);                            
+
+
+               
+               }else if(robot.canPickThing()==false){
+                   robot.move();
+                  if(robot.canPickThing()){
+                       robot.pickThing();
+                   girarEspalda(robot);
+                   mover4(robot);
+                   robot.turnLeft();
+                   mover3(robot);//cambia  
+                 ponerTemporalIzquierda(robot);
+                  mover3(robot);//cambia
+                   girarDerecha(robot);
+                   mover5(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover5(robot);
+                    robot.turnLeft();
+                  mover8(robot);//cambia
+                   robot.putThing();
+                    girarEspalda(robot);
+                   mover5(robot);//cambia+1
+                   sacarTemporalDerecha(robot);
+                   mover3(robot);//cambia-1
+                   girarDerecha(robot);
+                   mover5(robot);
+                   robot.putThing();
+                   girarEspalda(robot);
+                   mover5(robot);
+                   robot.turnLeft();
+                   mover7(robot);//cambia
+                   girarEspalda(robot);
+                       
+                       
+                 }
+               else{
+              robot.move();
+                
+              
+               robot.pickThing();
+               girarEspalda(robot);
+               mover5(robot);
+               robot.turnLeft();
+               mover8(robot);//cambia
+               robot.putThing();
+               girarEspalda(robot);
+               robot.move();
+                   }
+             
+               }
+                   
+                   
+                   
+               }
+                     
+                   
+                   
+               }
+         
+        
+    }
+ }else if(seccion==1){
+     if(posicion==4){
+           mover6(robot);
+               girarDerecha(robot);
+               robot.move();
+               robot.pickThing();
+               girarEspalda(robot);
+               robot.move();
+               robot.turnLeft();
+               mover7(robot);
+               robot.putThing();
+              girarEspalda(robot);
+               robot.move();
+     
+         }else if(posicion==3){
+          mover6(robot);
+               girarDerecha(robot);
+               robot.move();
+               if(robot.canPickThing()){
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   robot.move();
+                   robot.turnLeft();
+                   mover2(robot);  
+                   ponerTemporalIzquierda(robot);
+                   
+                 
+                  mover2(robot);
+                   girarDerecha(robot);
+                   mover2(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover2(robot);
+                    robot.turnLeft();
+                  mover7(robot);
+                   robot.putThing();
+                    girarEspalda(robot);
+                   mover5(robot);
+                   sacarTemporalDerecha(robot);
+                   mover2(robot);
+                   girarDerecha(robot);
+                   mover2(robot);
+                   robot.putThing();
+                   girarEspalda(robot);
+                   mover2(robot);
+                   robot.turnLeft();
+                   mover6(robot);
+                   girarEspalda(robot);
+         
+         }else{
+                    robot.move();
+               robot.pickThing();
+               girarEspalda(robot);
+               mover2(robot);
+               robot.turnLeft();
+               mover7(robot);
+               robot.putThing();
+               girarEspalda(robot);
+               robot.move();
+               }
+         }else if(posicion==2){
+               mover6(robot);
+               girarDerecha(robot);
+               robot.move();
+               if(robot.canPickThing()){
+                    robot.pickThing();
+                   girarEspalda(robot);
+                  robot.move();
+                   robot.turnLeft();
+                   mover2(robot);  //cambia
+                 ponerTemporalIzquierda(robot);
+                  mover2(robot);//cambia
+                   girarDerecha(robot);
+                   mover2(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);    
+                   mover2(robot);
+                   robot.turnLeft();
+                   mover3(robot);//cambia
+                   ponerTemporalIzquierda(robot);
+                   mover3(robot);//cambia
+                   girarDerecha(robot);
+                   mover3(robot);
+                   robot.pickThing();
+               girarEspalda(robot);
+               mover3(robot);
+               robot.turnLeft();
+               mover7(robot);//cambia
+               robot.putThing();
+               girarEspalda(robot);
+               mover4(robot);
+               sacarTemporalDerecha(robot);
+               mover3(robot);//cambia
+               girarDerecha(robot);
+               mover3(robot);
+               robot.putThing();
+               girarEspalda(robot);
+               mover3(robot);
+               robot.turnLeft();
+               mover2(robot);//cambia
+               sacarTemporalIzquierda(robot);
+               mover2(robot);//cambia
+               girarDerecha(robot);
+               mover2(robot);
+               robot.putThing();
+               girarEspalda(robot);               
+               mover2(robot); 
+               robot.turnLeft();
+               mover6(robot);//cambia
+               girarEspalda(robot);                            
+                   
+                   
+               
+               }else if(robot.canPickThing()==false){
+                   robot.move();
+                  if(robot.canPickThing()){
+                       robot.pickThing();
+                   girarEspalda(robot);
+                   mover2(robot);
+                   robot.turnLeft();
+                   mover2(robot);  
+                 ponerTemporalIzquierda(robot);
+                  mover2(robot);
+                   girarDerecha(robot);
+                   mover3(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover3(robot);
+                    robot.turnLeft();
+                  mover7(robot);
+                   robot.putThing();
+                    girarEspalda(robot);
+                   mover5(robot);
+                   sacarTemporalDerecha(robot);
+                   mover2(robot);
+                   girarDerecha(robot);
+                   mover3(robot);
+                   robot.putThing();
+                   girarEspalda(robot);
+                   mover3(robot);
+                   robot.turnLeft();
+                   mover6(robot);
+                   girarEspalda(robot);
+                       
+                       
+                 }
+               else{
+              robot.move();
+                
+              
+               robot.pickThing();
+               girarEspalda(robot);
+               mover3(robot);
+               robot.turnLeft();
+               mover7(robot);//cambia
+               robot.putThing();
+               girarEspalda(robot);
+               robot.move();
+                   }
+             
+               }
+         
+         }else if(posicion==1){
+         
+              mover6(robot);//CAMBIA
+               girarDerecha(robot);
+               robot.move();
+               if(robot.canPickThing()){
+                    robot.pickThing();
+                   girarEspalda(robot);
+                  robot.move();
+                   robot.turnLeft();
+                   mover2(robot);  //cambia
+                 ponerTemporalIzquierda(robot);
+                  mover2(robot);//cambia
+                   girarDerecha(robot);
+                   mover2(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);    
+                   mover2(robot);
+                   robot.turnLeft();
+                   mover3(robot);//cambia
+                   ponerTemporalIzquierda(robot);
+                   mover3(robot);//cambia
+                   girarDerecha(robot);
+                   mover3(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover3(robot);
+                   robot.turnLeft();
+                   mover4(robot);//cambia
+                   ponerTemporalIzquierda(robot);
+                   mover4(robot);//cambia
+                       
+                   girarDerecha(robot);
+                   mover4(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover4(robot);
+                   robot.turnLeft();
+                   mover7(robot);//cambia
+                   robot.putThing();
+                   girarEspalda(robot);
+               mover3(robot);
+               sacarTemporalDerecha(robot);
+               mover4(robot);//cambia
+               girarDerecha(robot);
+               mover4(robot);
+               robot.putThing();
+               girarEspalda(robot);
+                mover4(robot);
+               robot.turnLeft();
+               mover3(robot);//cambia
+                         
+                           
+               sacarTemporalIzquierda(robot);
+               mover3(robot);//cambia
+               girarDerecha(robot);
+               mover3(robot);
+               robot.putThing();
+               girarEspalda(robot);
+               mover3(robot);
+               robot.turnLeft();
+               mover2(robot);//cambia
+               sacarTemporalIzquierda(robot);
+               mover2(robot);//cambia
+               girarDerecha(robot);
+               mover2(robot);
+               robot.putThing();
+               girarEspalda(robot);               
+               mover2(robot); 
+               robot.turnLeft();
+               mover6(robot);//cambia
+               girarEspalda(robot);                            
+                   
+                   
+               
+               }else if(robot.canPickThing()==false){
+                     robot.move();
+                           if(robot.canPickThing()){
+                           robot.pickThing();
+                           girarEspalda(robot);
+                           mover2(robot);
+                           robot.turnLeft();
+                           mover2(robot);  //cambia
+                           ponerTemporalIzquierda(robot);
+                           mover2(robot);//cambia
+                           girarDerecha(robot);
+                           mover3(robot);
+                           robot.pickThing();
+                           girarEspalda(robot);    
+                           mover3(robot);
+                           robot.turnLeft();
+                           mover3(robot);//cambia
+                           ponerTemporalIzquierda(robot);
+                           mover3(robot);//cambia
+                           girarDerecha(robot);
+                           mover4(robot);
+                           robot.pickThing();
+                           girarEspalda(robot);
+                           mover4(robot);
+                           robot.turnLeft();
+                           mover7(robot);//cambia
+                           robot.putThing();
+                           girarEspalda(robot);
+                           mover4(robot);
+                           sacarTemporalDerecha(robot);
+                           mover3(robot);//cambia
+                           girarDerecha(robot);
+                           mover4(robot);
+                           robot.putThing();
+                           girarEspalda(robot);
+                           mover4(robot);
+                           robot.turnLeft();
+                           mover2(robot);//cambia
+                           sacarTemporalIzquierda(robot);
+                           mover2(robot);//cambia
+                           girarDerecha(robot);
+                           mover3(robot);
+                           robot.putThing();
+                           girarEspalda(robot);               
+                           mover3(robot); 
+                           robot.turnLeft();
+                           mover6(robot);//cambia
+                           girarEspalda(robot);                            
+
+
+               
+               }else if(robot.canPickThing()==false){
+                   robot.move();
+                  if(robot.canPickThing()){
+                       robot.pickThing();
+                   girarEspalda(robot);
+                   mover3(robot);
+                   robot.turnLeft();
+                   mover2(robot);//cambia  
+                 ponerTemporalIzquierda(robot);
+                  mover2(robot);//cambia
+                   girarDerecha(robot);
+                   mover4(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover4(robot);
+                    robot.turnLeft();
+                  mover7(robot);//cambia
+                   robot.putThing();
+                    girarEspalda(robot);
+                   mover5(robot);
+                   sacarTemporalDerecha(robot);
+                   mover2(robot);//cambia
+                   girarDerecha(robot);
+                   mover4(robot);
+                   robot.putThing();
+                   girarEspalda(robot);
+                   mover4(robot);
+                   robot.turnLeft();
+                   mover6(robot);//cambia
+                   girarEspalda(robot);
+                       
+                       
+                 }
+               else{
+              robot.move();
+                
+              
+               robot.pickThing();
+               girarEspalda(robot);
+               mover4(robot);
+               robot.turnLeft();
+               mover7(robot);//cambia
+               robot.putThing();
+               girarEspalda(robot);
+               robot.move();
+                   }
+             
+               }
+                   
+                   
+                   
+               }
+         
+         
+         
+         
+         
+         }else if(posicion==0){
+              mover6(robot);//CAMBIA
+               girarDerecha(robot);
+               robot.move();
+               if(robot.canPickThing()){
+                    robot.pickThing();
+                   girarEspalda(robot);
+                  robot.move();
+                   robot.turnLeft();
+                   mover2(robot);  //cambia
+                 ponerTemporalIzquierda(robot);
+                  mover2(robot);//cambia
+                   girarDerecha(robot);
+                   mover2(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);    
+                   mover2(robot);
+                   robot.turnLeft();
+                   mover3(robot);//cambia
+                   ponerTemporalIzquierda(robot);
+                   mover3(robot);//cambia
+                   girarDerecha(robot);
+                   mover3(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover3(robot);
+                   robot.turnLeft();
+                   mover4(robot);//cambia
+                   ponerTemporalIzquierda(robot);
+                   mover4(robot);//cambia
+                       
+                   girarDerecha(robot);
+                   mover4(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover4(robot);
+                   robot.turnLeft();
+                   mover5(robot);//cambia
+                   ponerTemporalIzquierda(robot);
+                   mover5(robot);//cambia
+                   girarDerecha(robot);
+                   mover5(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover5(robot);
+                   robot.turnLeft();
+                   mover7(robot);//cambia
+                   robot.putThing();
+                   girarEspalda(robot);
+                   mover2(robot);
+                   sacarTemporalDerecha(robot);
+                   mover5(robot);//cambia
+                   girarDerecha(robot);
+                   mover5(robot);
+                   robot.putThing();
+                   girarEspalda(robot);
+                   mover5(robot);
+                   robot.turnLeft();
+                   
+                  mover4(robot);//CAMBIA
+                sacarTemporalIzquierda(robot);
+               mover4(robot);//cambia
+               girarDerecha(robot);
+               mover4(robot);
+               robot.putThing();
+               girarEspalda(robot);
+                mover4(robot);
+               robot.turnLeft();
+               mover3(robot);//cambia
+                         
+                           
+               sacarTemporalIzquierda(robot);
+               mover3(robot);//cambia FALLO EN SECCION 1
+               girarDerecha(robot);
+               mover3(robot);
+               robot.putThing();
+               girarEspalda(robot);
+               mover3(robot);
+               robot.turnLeft();
+               mover2(robot);//cambia
+               sacarTemporalIzquierda(robot);
+               mover2(robot);//cambia
+               girarDerecha(robot);
+               mover2(robot);
+               robot.putThing();
+               girarEspalda(robot);               
+               mover2(robot); 
+               robot.turnLeft();
+               mover6(robot);//cambia
+               girarEspalda(robot);                            
+                   
+                   
+               
+               }else if(robot.canPickThing()==false){
+                 robot.move();
+               if(robot.canPickThing()){
+                    robot.pickThing();
+                   girarEspalda(robot);
+                  mover2(robot);
+                   robot.turnLeft();
+                   mover2(robot);  //cambia
+                 ponerTemporalIzquierda(robot);
+                  mover2(robot);//cambia
+                   girarDerecha(robot);
+                   mover3(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);    
+                   mover3(robot);
+                   robot.turnLeft();
+                   mover3(robot);//cambia
+                   ponerTemporalIzquierda(robot);
+                   mover3(robot);//cambia
+                   girarDerecha(robot);
+                   mover4(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover4(robot);
+                   robot.turnLeft();
+                   mover4(robot);//cambia
+                   ponerTemporalIzquierda(robot);
+                   mover4(robot);//cambia
+                       
+                   girarDerecha(robot);
+                   mover5(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover5(robot);
+                   robot.turnLeft();
+                   mover7(robot);//cambia
+                   robot.putThing();
+                   girarEspalda(robot);
+               mover3(robot);//cambia
+               sacarTemporalDerecha(robot);
+               mover4(robot);//cambia
+               girarDerecha(robot);
+               mover5(robot);
+               robot.putThing();
+               girarEspalda(robot);
+                mover5(robot);
+               robot.turnLeft();
+               mover3(robot);//cambia
+                         
+                           
+               sacarTemporalIzquierda(robot);
+               mover3(robot);//cambia
+               girarDerecha(robot);
+               mover4(robot);
+               robot.putThing();
+               girarEspalda(robot);
+               mover4(robot);
+               robot.turnLeft();
+               mover2(robot);//cambia
+               sacarTemporalIzquierda(robot);
+               mover2(robot);//cambia
+               girarDerecha(robot);
+               mover3(robot);
+               robot.putThing();
+               girarEspalda(robot);               
+               mover3(robot); 
+               robot.turnLeft();
+               mover6(robot);//cambia
+               girarEspalda(robot);                            
+                   
+                   
+               
+               }else if(robot.canPickThing()==false){
+                     robot.move();
+                           if(robot.canPickThing()){
+                           robot.pickThing();
+                           girarEspalda(robot);
+                           mover3(robot);
+                           robot.turnLeft();
+                           mover2(robot);  //cambia
+                           ponerTemporalIzquierda(robot);
+                           mover2(robot);//cambia
+                           girarDerecha(robot);
+                           mover4(robot);
+                           robot.pickThing();
+                           girarEspalda(robot);    
+                           mover4(robot);
+                           robot.turnLeft();
+                           mover3(robot);//cambia
+                           ponerTemporalIzquierda(robot);
+                           mover3(robot);//cambia
+                           girarDerecha(robot);
+                           mover5(robot);
+                           robot.pickThing();
+                           girarEspalda(robot);
+                           mover5(robot);
+                           robot.turnLeft();
+                           mover7(robot);//cambia
+                           robot.putThing();
+                           girarEspalda(robot);
+                           mover4(robot);
+                           sacarTemporalDerecha(robot);
+                           mover3(robot);//cambia
+                           girarDerecha(robot);
+                           mover5(robot);
+                           robot.putThing();
+                           girarEspalda(robot);
+                           mover5(robot);
+                           robot.turnLeft();
+                           mover2(robot);//cambia
+                           sacarTemporalIzquierda(robot);
+                           mover2(robot);//cambia
+                           girarDerecha(robot);
+                           mover4(robot);
+                           robot.putThing();
+                           girarEspalda(robot);               
+                           mover4(robot); 
+                           robot.turnLeft();
+                           mover6(robot);//cambia
+                           girarEspalda(robot);                            
+
+
+               
+               }else if(robot.canPickThing()==false){
+                   robot.move();
+                  if(robot.canPickThing()){
+                       robot.pickThing();
+                   girarEspalda(robot);
+                   mover4(robot);
+                   robot.turnLeft();
+                   mover2(robot);//cambia  
+                 ponerTemporalIzquierda(robot);
+                  mover2(robot);//cambia
+                   girarDerecha(robot);
+                   mover5(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover5(robot);
+                    robot.turnLeft();
+                  mover7(robot);//cambia
+                   robot.putThing();
+                    girarEspalda(robot);
+                   mover5(robot);//cambia
+                   sacarTemporalDerecha(robot);
+                   mover2(robot);//cambia
+                   girarDerecha(robot);
+                   mover5(robot);
+                   robot.putThing();
+                   girarEspalda(robot);
+                   mover5(robot);
+                   robot.turnLeft();
+                   mover6(robot);//cambia
+                   girarEspalda(robot);
+                       
+                       
+                 }
+               else{
+              robot.move();
+                
+              
+               robot.pickThing();
+               girarEspalda(robot);
+               mover5(robot);
+               robot.turnLeft();
+               mover7(robot);//cambia
+               robot.putThing();
+               girarEspalda(robot);
+               robot.move();
+                   }
+             
+               }
+                   
+                   
+                   
+               }
+                     
+                   
+                   
+               }
+         
+         } 
+ 
+ }else if(seccion==2){
+       if(posicion==4){
+               mover5(robot);
+               girarDerecha(robot);
+               robot.move();
+               robot.pickThing();
+               girarEspalda(robot);
+               robot.move();
+               robot.turnLeft();
+               mover6(robot);
+               robot.putThing();
+              girarEspalda(robot);
+               robot.move();
+     
+       }else if(posicion==3){
+             mover5(robot);
+               girarDerecha(robot);
+               robot.move();
+               if(robot.canPickThing()){
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   robot.move();
+                   robot.turnLeft();
+                  robot.move();
+                  ponerTemporalIzquierda(robot);                               
+                  robot.move();
+                   girarDerecha(robot);
+                   mover2(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover2(robot);
+                    robot.turnLeft();
+                  mover6(robot);
+                   robot.putThing();
+                    girarEspalda(robot);
+                   mover5(robot);
+                   sacarTemporalDerecha(robot);
+                   robot.move();
+                   girarDerecha(robot);
+                   mover2(robot);
+                   robot.putThing();
+                   girarEspalda(robot);
+                   mover2(robot);
+                   robot.turnLeft();
+                   mover5(robot);
+                   girarEspalda(robot);
+           
+           
+           
+       }else{
+                    robot.move();
+               robot.pickThing();
+               girarEspalda(robot);
+               mover2(robot);
+               robot.turnLeft();
+               mover6(robot);
+               robot.putThing();
+               girarEspalda(robot);
+               robot.move();
+                   
+               }
+       }else if(posicion==2){
+               mover5(robot);//cambia
+               girarDerecha(robot);
+               robot.move();
+               if(robot.canPickThing()){
+                    robot.pickThing();
+                   girarEspalda(robot);
+                  robot.move();
+                   robot.turnLeft();
+                   robot.move(); //cambia
+                 ponerTemporalIzquierda(robot);
+                  robot.move();//cambia
+                   girarDerecha(robot);
+                   mover2(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);    
+                   mover2(robot);
+                   robot.turnLeft();
+                   mover2(robot);//cambia
+                   ponerTemporalIzquierda(robot);
+                   mover2(robot);//cambia
+                   girarDerecha(robot);
+                   mover3(robot);
+                   robot.pickThing();
+               girarEspalda(robot);
+               mover3(robot);
+               robot.turnLeft();
+               mover6(robot);//cambia
+               robot.putThing();
+               girarEspalda(robot);
+               mover4(robot);
+               sacarTemporalDerecha(robot);
+               mover2(robot);//cambia
+               girarDerecha(robot);
+               mover3(robot);
+               robot.putThing();
+               girarEspalda(robot);
+               mover3(robot);
+               robot.turnLeft();
+              robot.move();//cambia
+               sacarTemporalIzquierda(robot);
+             robot.move();//cambia
+               girarDerecha(robot);
+               mover2(robot);
+               robot.putThing();
+               girarEspalda(robot);               
+               mover2(robot); 
+               robot.turnLeft();
+               mover5(robot);//cambia
+               girarEspalda(robot);                            
+                   
+                   
+               
+               }else if(robot.canPickThing()==false){
+                   robot.move();
+                  if(robot.canPickThing()){
+                       robot.pickThing();
+                   girarEspalda(robot);
+                   mover2(robot);
+                   robot.turnLeft();
+                   robot.move();//cambia
+                 ponerTemporalIzquierda(robot);
+                  robot.move();//cambia
+                   girarDerecha(robot);
+                   mover3(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover3(robot);
+                    robot.turnLeft();
+                  mover6(robot);//cambia
+                   robot.putThing();
+                    girarEspalda(robot);
+                   mover5(robot);
+                   sacarTemporalDerecha(robot);
+                   robot.move();//cambia
+                   girarDerecha(robot);
+                   mover3(robot);
+                   robot.putThing();
+                   girarEspalda(robot);
+                   mover3(robot);
+                   robot.turnLeft();
+                   mover5(robot);
+                   girarEspalda(robot);
+                       
+                       
+                 }
+               else{
+              robot.move();
+                
+              
+               robot.pickThing();
+               girarEspalda(robot);
+               mover3(robot);
+               robot.turnLeft();
+               mover6(robot);//cambia
+               robot.putThing();
+               girarEspalda(robot);
+               robot.move();
+                   }
+             
+               }
+       
+       }else if(posicion==1){
+        mover5(robot);//CAMBIA
+               girarDerecha(robot);
+               robot.move();
+               if(robot.canPickThing()){
+                    robot.pickThing();
+                   girarEspalda(robot);
+                  robot.move();
+                   robot.turnLeft();
+                   mover1(robot);  //cambia
+                 ponerTemporalIzquierda(robot);
+                  mover1(robot);//cambia
+                   girarDerecha(robot);
+                   mover2(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);    
+                   mover2(robot);
+                   robot.turnLeft();
+                   mover2(robot);//cambia
+                   ponerTemporalIzquierda(robot);
+                   mover2(robot);//cambia
+                   girarDerecha(robot);
+                   mover3(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover3(robot);
+                   robot.turnLeft();
+                   mover3(robot);//cambia
+                   ponerTemporalIzquierda(robot);
+                   mover3(robot);//cambia
+                       
+                   girarDerecha(robot);
+                   mover4(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover4(robot);
+                   robot.turnLeft();
+                   mover6(robot);//cambia
+                   robot.putThing();
+                   girarEspalda(robot);
+               mover3(robot);
+               sacarTemporalDerecha(robot);
+               mover3(robot);//cambia
+               girarDerecha(robot);
+               mover4(robot);
+               robot.putThing();
+               girarEspalda(robot);
+                mover4(robot);
+               robot.turnLeft();
+               mover2(robot);//cambia
+                         
+                           
+               sacarTemporalIzquierda(robot);
+               mover2(robot);//cambia
+               girarDerecha(robot);
+               mover3(robot);
+               robot.putThing();
+               girarEspalda(robot);
+               mover3(robot);
+               robot.turnLeft();
+               mover1(robot);//cambia
+               sacarTemporalIzquierda(robot);
+               mover1(robot);//cambia
+               girarDerecha(robot);
+               mover2(robot);
+               robot.putThing();
+               girarEspalda(robot);               
+               mover2(robot); 
+               robot.turnLeft();
+               mover5(robot);//cambia
+               girarEspalda(robot);                            
+                   
+                   
+               
+               }else if(robot.canPickThing()==false){
+                     robot.move();
+                           if(robot.canPickThing()){
+                           robot.pickThing();
+                           girarEspalda(robot);
+                           mover2(robot);
+                           robot.turnLeft();
+                           mover1(robot);  //cambia
+                           ponerTemporalIzquierda(robot);
+                           mover1(robot);//cambia
+                           girarDerecha(robot);
+                           mover3(robot);
+                           robot.pickThing();
+                           girarEspalda(robot);    
+                           mover3(robot);
+                           robot.turnLeft();
+                           mover2(robot);//cambia
+                           ponerTemporalIzquierda(robot);
+                           mover2(robot);//cambia
+                           girarDerecha(robot);
+                           mover4(robot);
+                           robot.pickThing();
+                           girarEspalda(robot);
+                           mover4(robot);
+                           robot.turnLeft();
+                           mover6(robot);//cambia
+                           robot.putThing();
+                           girarEspalda(robot);
+                           mover4(robot);
+                           sacarTemporalDerecha(robot);
+                           mover2(robot);//cambia
+                           girarDerecha(robot);
+                           mover4(robot);
+                           robot.putThing();
+                           girarEspalda(robot);
+                           mover4(robot);
+                           robot.turnLeft();
+                           mover1(robot);//cambia
+                           sacarTemporalIzquierda(robot);
+                           mover1(robot);//cambia
+                           girarDerecha(robot);
+                           mover3(robot);
+                           robot.putThing();
+                           girarEspalda(robot);               
+                           mover3(robot); 
+                           robot.turnLeft();
+                           mover5(robot);//cambia
+                           girarEspalda(robot);                            
+
+
+               
+               }else if(robot.canPickThing()==false){
+                   robot.move();
+                  if(robot.canPickThing()){
+                       robot.pickThing();
+                   girarEspalda(robot);
+                   mover3(robot);
+                   robot.turnLeft();
+                   mover1(robot);//cambia  
+                 ponerTemporalIzquierda(robot);
+                  mover1(robot);//cambia
+                   girarDerecha(robot);
+                   mover4(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover4(robot);
+                    robot.turnLeft();
+                  mover6(robot);//cambia
+                   robot.putThing();
+                    girarEspalda(robot);
+                   mover5(robot);
+                   sacarTemporalDerecha(robot);
+                   mover1(robot);//cambia
+                   girarDerecha(robot);
+                   mover4(robot);
+                   robot.putThing();
+                   girarEspalda(robot);
+                   mover4(robot);
+                   robot.turnLeft();
+                   mover5(robot);//cambia
+                   girarEspalda(robot);
+                       
+                       
+                 }
+               else{
+              robot.move();
+                
+              
+               robot.pickThing();
+               girarEspalda(robot);
+               mover4(robot);
+               robot.turnLeft();
+               mover6(robot);//cambia
+               robot.putThing();
+               girarEspalda(robot);
+               robot.move();
+                   }
+             
+               }
+                   
+                   
+                   
+               }
+         
+       
+       }else if(posicion==0){
+               mover5(robot);//CAMBIA
+               girarDerecha(robot);
+               robot.move();
+               if(robot.canPickThing()){
+                    robot.pickThing();
+                   girarEspalda(robot);
+                  robot.move();
+                   robot.turnLeft();
+                   mover1(robot);  //cambia
+                 ponerTemporalIzquierda(robot);
+                  mover1(robot);//cambia
+                   girarDerecha(robot);
+                   mover2(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);    
+                   mover2(robot);
+                   robot.turnLeft();
+                   mover2(robot);//cambia
+                   ponerTemporalIzquierda(robot);
+                   mover2(robot);//cambia
+                   girarDerecha(robot);
+                   mover3(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover3(robot);
+                   robot.turnLeft();
+                   mover3(robot);//cambia
+                   ponerTemporalIzquierda(robot);
+                   mover3(robot);//cambia
+                       
+                   girarDerecha(robot);
+                   mover4(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover4(robot);
+                   robot.turnLeft();
+                   mover4(robot);//cambia
+                   ponerTemporalIzquierda(robot);
+                   mover4(robot);//cambia
+                   girarDerecha(robot);
+                   mover5(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover5(robot);
+                   robot.turnLeft();
+                   mover6(robot);//cambia
+                   robot.putThing();
+                   girarEspalda(robot);
+                   mover2(robot);
+                   sacarTemporalDerecha(robot);
+                   mover4(robot);//cambia
+                   girarDerecha(robot);
+                   mover5(robot);
+                   robot.putThing();
+                   girarEspalda(robot);
+                   mover5(robot);
+                   robot.turnLeft();
+                   
+                  mover3(robot);
+                sacarTemporalIzquierda(robot);
+               mover3(robot);//cambia
+               girarDerecha(robot);
+               mover4(robot);
+               robot.putThing();
+               girarEspalda(robot);
+                mover4(robot);
+               robot.turnLeft();
+               mover2(robot);//cambia
+                         
+                           
+               sacarTemporalIzquierda(robot);
+               mover2(robot);//cambia
+               girarDerecha(robot);
+               mover3(robot);
+               robot.putThing();
+               girarEspalda(robot);
+               mover3(robot);
+               robot.turnLeft();
+               mover1(robot);//cambia
+               sacarTemporalIzquierda(robot);
+               mover1(robot);//cambia
+               girarDerecha(robot);
+               mover2(robot);
+               robot.putThing();
+               girarEspalda(robot);               
+               mover2(robot); 
+               robot.turnLeft();
+               mover5(robot);//cambia
+               girarEspalda(robot);                            
+                   
+                   
+               
+               }else if(robot.canPickThing()==false){
+                 robot.move();
+               if(robot.canPickThing()){
+                    robot.pickThing();
+                   girarEspalda(robot);
+                  mover2(robot);
+                   robot.turnLeft();
+                   mover1(robot);  //cambia
+                 ponerTemporalIzquierda(robot);
+                  mover1(robot);//cambia
+                   girarDerecha(robot);
+                   mover3(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);    
+                   mover3(robot);
+                   robot.turnLeft();
+                   mover2(robot);//cambia
+                   ponerTemporalIzquierda(robot);
+                   mover2(robot);//cambia
+                   girarDerecha(robot);
+                   mover4(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover4(robot);
+                   robot.turnLeft();
+                   mover3(robot);//cambia
+                   ponerTemporalIzquierda(robot);
+                   mover3(robot);//cambia
+                       
+                   girarDerecha(robot);
+                   mover5(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover5(robot);
+                   robot.turnLeft();
+                   mover6(robot);//cambia
+                   robot.putThing();
+                   girarEspalda(robot);
+               mover3(robot);//cambia
+               sacarTemporalDerecha(robot);
+               mover3(robot);//cambia
+               girarDerecha(robot);
+               mover5(robot);
+               robot.putThing();
+               girarEspalda(robot);
+                mover5(robot);
+               robot.turnLeft();
+               mover2(robot);//cambia
+                         
+                           
+               sacarTemporalIzquierda(robot);
+               mover2(robot);//cambia
+               girarDerecha(robot);
+               mover4(robot);
+               robot.putThing();
+               girarEspalda(robot);
+               mover4(robot);
+               robot.turnLeft();
+               mover1(robot);//cambia
+               sacarTemporalIzquierda(robot);
+               mover1(robot);//cambia
+               girarDerecha(robot);
+               mover3(robot);
+               robot.putThing();
+               girarEspalda(robot);               
+               mover3(robot); 
+               robot.turnLeft();
+               mover5(robot);//cambia
+               girarEspalda(robot);                            
+                   
+                   
+               
+               }else if(robot.canPickThing()==false){
+                     robot.move();
+                           if(robot.canPickThing()){
+                           robot.pickThing();
+                           girarEspalda(robot);
+                           mover3(robot);
+                           robot.turnLeft();
+                           mover1(robot);  //cambia
+                           ponerTemporalIzquierda(robot);
+                           mover1(robot);//cambia
+                           girarDerecha(robot);
+                           mover4(robot);
+                           robot.pickThing();
+                           girarEspalda(robot);    
+                           mover4(robot);
+                           robot.turnLeft();
+                           mover2(robot);//cambia
+                           ponerTemporalIzquierda(robot);
+                           mover2(robot);//cambia
+                           girarDerecha(robot);
+                           mover5(robot);
+                           robot.pickThing();
+                           girarEspalda(robot);
+                           mover5(robot);
+                           robot.turnLeft();
+                           mover6(robot);//cambia
+                           robot.putThing();
+                           girarEspalda(robot);
+                           mover4(robot);
+                           sacarTemporalDerecha(robot);
+                           mover2(robot);//cambia
+                           girarDerecha(robot);
+                           mover5(robot);
+                           robot.putThing();
+                           girarEspalda(robot);
+                           mover5(robot);
+                           robot.turnLeft();
+                           mover1(robot);//cambia
+                           sacarTemporalIzquierda(robot);
+                           mover1(robot);//cambia
+                           girarDerecha(robot);
+                           mover4(robot);
+                           robot.putThing();
+                           girarEspalda(robot);               
+                           mover4(robot); 
+                           robot.turnLeft();
+                           mover5(robot);//cambia
+                           girarEspalda(robot);                            
+
+
+               
+               }else if(robot.canPickThing()==false){
+                   robot.move();
+                  if(robot.canPickThing()){
+                       robot.pickThing();
+                   girarEspalda(robot);
+                   mover4(robot);
+                   robot.turnLeft();
+                   mover1(robot);//cambia  
+                 ponerTemporalIzquierda(robot);
+                  mover1(robot);//cambia
+                   girarDerecha(robot);
+                   mover5(robot);
+                   robot.pickThing();
+                   girarEspalda(robot);
+                   mover5(robot);
+                    robot.turnLeft();
+                  mover6(robot);//cambia
+                   robot.putThing();
+                    girarEspalda(robot);
+                   mover5(robot);//cambia
+                   sacarTemporalDerecha(robot);
+                   mover1(robot);//cambia
+                   girarDerecha(robot);
+                   mover5(robot);
+                   robot.putThing();
+                   girarEspalda(robot);
+                   mover5(robot);
+                   robot.turnLeft();
+                   mover5(robot);//cambia
+                   girarEspalda(robot);
+                       
+                       
+                 }
+               else{
+              robot.move();
+                
+              
+               robot.pickThing();
+               girarEspalda(robot);
+               mover5(robot);
+               robot.turnLeft();
+               mover6(robot);//cambia
+               robot.putThing();
+               girarEspalda(robot);
+               robot.move();
+                   }
+             
+               }
+                   
+                   
+                   
+               }
+                     
+                   
+                   
+               }
+         
+       
+       }
+ 
  }
     
     
-  
-  
+ }
+ 
     
     
 
@@ -292,6 +2113,11 @@ public class Main {
         for(int i=0;i<3;i++){
         p.agregarSeccion(i);
         }
+        for(int i=1; i<16;i++){
+            int seccion=p.Determinanandoseccion();
+            p.agregarSeccionVehicularDeterminando(i, ny, 5, 7);
+            ingresarVehiculo(roboco,seccion);
+        }
         int continuar = 1, opcion = 0;
         do{
             System.out.println(p.getNombre());
@@ -300,6 +2126,7 @@ public class Main {
             System.out.println("2. Sacar vehiculo");
             System.out.println("3. Informacion seccion");
             opcion = in.nextInt();
+            
             if(opcion == 1){
                   System.out.println("Ingrese los datos del vehiculo");
                 System.out.println("Placa");
@@ -354,34 +2181,10 @@ public class Main {
         }while(continuar == 1);
     
     }
+   
+   
 
 
-        
-      
-      
-          
-
-
-      // mark goes around the roadblock
-//      mark.turnLeft();
-//      mark.move();
-//      mark.move();
-//      mark.turnLeft();     // start turning right as three turn lefts
-//      mark.turnLeft();
-//      mark.turnLeft();     // finished turning right
-//      mark.move();
-
-      // ann goes to meet mark
-//      ann.turnLeft();      // start turning right as three turn lefts
-//      ann.turnLeft();
-//      ann.turnLeft();      // finished turning right
-//     
-//      if(ann.frontIsClear())
-//          ann.move();
-//      
-//      ann.move();
-//      ann.turnLeft();
-//      
-//      
+    
    }
 

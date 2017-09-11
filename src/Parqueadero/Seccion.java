@@ -65,15 +65,15 @@ public class Seccion {
     public boolean eliminarVehiculo(int placa){
        if(this.numvehiculos>0){
            for(int i =0; i<this.numvehiculos;i++){
-           if(placa==this.vehiculo[i].getPlaca()){
+           if(this.vehiculo[i].getPlaca()==placa){
               this.vehiculo[i]=null;
                  for(int j=i; j<this.numvehiculos-1;j++){
                  this.vehiculo[j]=this.vehiculo[j+1];
                  }                  
-                 
+                 break;
            
            }
-           break;
+     
       }
        
        

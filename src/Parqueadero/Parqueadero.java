@@ -170,7 +170,7 @@ if(seccion[0].getNumvehiculos()<seccion[1].getNumvehiculos()){
  public boolean eliminarVehiculoPlaca(int numerodeseccion, int placa){
                   boolean resultado = false;
        
-            if(numerodeseccion==this.seccion[numerodeseccion].getNumeroseccion()){
+            if(this.seccion[numerodeseccion].getNumeroseccion()==numerodeseccion){
               resultado = this.seccion[numerodeseccion].eliminarVehiculo(placa);
             return resultado;
             }
