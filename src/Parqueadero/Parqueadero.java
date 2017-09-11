@@ -93,10 +93,10 @@ public class Parqueadero {
         int j = posicion;
         if (a != 4){
             for (j = posicion; j < (4 - a); j++){
-                System.out.println(vehiculo.getSeccion().getVehiculos()[j+1].getPlaca());
                 vehiculo.getSeccion().setVehiculos(j, vehiculo.getSeccion().getVehiculos()[j+1]);
             }
-            vehiculo.getSeccion().setVehiculos(j+1, null);
+            System.out.println(j);
+            vehiculo.getSeccion().setVehiculos(j, null);
         }else{
             vehiculo.getSeccion().setVehiculos(j, null);
         }
